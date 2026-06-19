@@ -127,3 +127,34 @@
     grid-template-columns: 1fr;
   }
 }
+
+.about {
+  padding: 40px var(--gutter) 96px;
+  border-top: 1px solid var(--stone);
+}
+/* Section title: serif and inked, same scale as the "Tanaka's favorites" head
+   but without the matcha underline (this is a heading, not a label). */
+.aboutHead {
+  font-family: var(--font-serif), serif;
+  color: var(--ink);
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.1;
+}
+/* Lead: the opening line, set larger in the heading serif to anchor the column. */
+.aboutLead {
+  margin-top: clamp(20px, 3vh, 36px);
+  max-width: 52ch;
+  font-family: var(--font-serif), serif;
+  color: var(--ink);
+  font-size: clamp(20px, 2.6vw, 28px);
+  line-height: 1.4;
+}
+/* Body: the remaining paragraphs, a step down in the grotesk for readability. */
+.aboutBody {
+  margin-top: 18px;
+  max-width: 52ch;
+  font-family: var(--font-grotesk), sans-serif;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+}
