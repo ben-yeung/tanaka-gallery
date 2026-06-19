@@ -3,7 +3,26 @@
   height: clamp(60vh, 78vh, 88vh);
   overflow: hidden;
   background: var(--stone);
+  cursor: pointer;
+  position: relative;
 }
+.expandIcon {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: 4px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+.stage:hover .expandIcon { opacity: 1; }
 .info {
   padding: 28px var(--gutter) 96px;
   display: grid;

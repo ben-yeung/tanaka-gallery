@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getWork } from "@/data/works";
 import { getArtist } from "@/data/artists";
 import { formatPrice } from "@/data/format";
-import { MorphImage } from "@/components/motion/MorphImage";
+import { LightboxStage } from "@/components/motion/LightboxStage";
 import styles from "./detail.module.css";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -23,9 +23,7 @@ export default async function WorkDetail({ params }: Params) {
 
   return (
     <article>
-      <div className={styles.stage}>
-        <MorphImage slug={work.slug} src={work.image} alt={work.title} />
-      </div>
+      <LightboxStage slug={work.slug} src={work.image} alt={work.title} />
       <div className={styles.info}>
         <div>
           <h1 className={styles.title}>{work.title}</h1>
