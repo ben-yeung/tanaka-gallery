@@ -12,6 +12,11 @@ describe("artist selectors", () => {
   it("lists all artists", () => {
     expect(allArtists().length).toBe(10);
   });
+  it("every artist has a nameJa", () => {
+    for (const a of allArtists()) {
+      expect(a.nameJa, `${a.slug} is missing nameJa`).toBeTruthy();
+    }
+  });
 });
 
 describe("work selectors", () => {
