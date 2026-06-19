@@ -106,7 +106,7 @@ export function WabiSabiToggle({ children, onShowChange }: WabiSabiToggleProps) 
       </motion.span>
 
       {/* wabi-sabi. letters: left→right blur-in on show, right→left on hide */}
-      <span ref={latinRef} style={{ gridArea: "1/1" }} aria-hidden="true">
+      <span ref={latinRef} className={styles.latinLayer} style={{ gridArea: "1/1" }} aria-hidden="true">
         {Array.from(WABI).map((ch, i) => (
           <motion.span
             key={i}

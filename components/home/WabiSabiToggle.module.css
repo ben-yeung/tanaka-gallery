@@ -4,3 +4,9 @@
   display: inline-grid;
   cursor: pointer;
 }
+
+/* Parent .jp shrinks to 0.82em so CJK fills its em-box at the right optical size.
+   The Latin layer must undo that reduction to match "Art." and "San Francisco." */
+.latinLayer {
+  font-size: calc(1em / 0.82);
+}
