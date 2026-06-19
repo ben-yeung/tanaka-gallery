@@ -3,6 +3,7 @@
   height: clamp(60vh, 78vh, 88vh);
   overflow: hidden;
   background: var(--stone);
+  cursor: zoom-in;
 }
 .info {
   padding: 28px var(--gutter) 96px;
