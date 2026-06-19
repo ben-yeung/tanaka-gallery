@@ -1,0 +1,15 @@
+/* Stacks kanji and Latin layers in the same grid cell.
+   cursor: pointer signals interactivity without a role="button". */
+.wabiToggle {
+  display: inline-grid;
+  cursor: pointer;
+  /* baseline: both layers share grid-area 1/1 at different font-sizes; aligning their
+     text baselines ensures the Latin layer sits on the same line as Art. / San Francisco. */
+  align-items: baseline;
+}
+
+/* Parent .jp shrinks to 0.82em so CJK fills its em-box at the right optical size.
+   The Latin layer must undo that reduction to match "Art." and "San Francisco." */
+.latinLayer {
+  font-size: calc(1em / 0.82);
+}
