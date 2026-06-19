@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeSnakeOrder, type SnakeItem } from "./snake";
+import { computeSnakeOrder, type SnakeItem } from "../lib/snake";
 
 // Two rows of three. Row 0 top≈0, row 1 top≈100. Provided out of order.
 const items: SnakeItem[] = [

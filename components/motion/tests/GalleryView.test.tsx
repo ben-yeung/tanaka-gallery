@@ -11,7 +11,7 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => search,
 }));
 
-import { GalleryView } from "./GalleryView";
+import { GalleryView } from "../GalleryView";
 
 const work = (slug: string, artistSlug: string, year: number): Work => ({
   slug, title: slug, artistSlug, year, medium: "", dimensions: "",

@@ -24,10 +24,19 @@
   margin-top: 10px;
   font-size: clamp(12px, 0.4vw + 11px, 16px);
 }
-.sold { color: var(--stone); }
-.head { padding: 40px var(--gutter) 0; }
-.subhead { margin-top: 8px; color: var(--stone); }
-.morphWrap { display: block; }
+.sold {
+  color: var(--stone);
+}
+.head {
+  padding: 40px var(--gutter) 12px;
+}
+.subhead {
+  margin-top: 8px;
+  color: var(--stone);
+}
+.morphWrap {
+  display: block;
+}
 .cell {
   margin: 0;
 }
@@ -45,8 +54,30 @@
 .dimmed .frame {
   filter: brightness(0.5);
   opacity: 0.55;
-  transition: filter 300ms ease, opacity 300ms ease;
+  transition:
+    filter 300ms ease,
+    opacity 300ms ease;
 }
 .dimmed .caption {
   opacity: 0.55;
+}
+
+/* Loading skeleton: subtle color pulse staggered in snake order (see GallerySkeleton). */
+.skel {
+  animation: skelPulse 1.6s ease-in-out infinite;
+  animation-delay: var(--skel-delay, 0ms);
+}
+@keyframes skelPulse {
+  0%,
+  100% {
+    background-color: var(--stone);
+  }
+  50% {
+    background-color: color-mix(in srgb, var(--stone), var(--paper) 38%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skel {
+    animation: none;
+  }
 }

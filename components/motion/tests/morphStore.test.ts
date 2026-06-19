@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { setMorphOrigin, takeMorphOrigin } from "./morphStore";
+import { setMorphOrigin, takeMorphOrigin } from "../lib/morphStore";
 
 const rect = { top: 10, left: 20, width: 100, height: 80 };
 

@@ -3,9 +3,9 @@ import { render, screen } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/works" }));
 
-import { WorkGrid } from "./WorkGrid";
+import { WorkGrid } from "../WorkGrid";
 import type { Work } from "@/data/types";
-import styles from "./grid.module.css";
+import styles from "../styles/grid.module.css";
 
 const work = (slug: string, available: boolean): Work => ({
   slug, title: slug, artistSlug: "saburo-ohta", year: 2020, medium: "", dimensions: "",

@@ -6,10 +6,10 @@ import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import type { Work } from "@/data/types";
 import { formatMeta } from "@/data/works";
-import { setMorphOrigin } from "./morphStore";
-import { consumeGalleryReturn, markGalleryReturn } from "./entranceFlag";
-import { computeSnakeOrder, type SnakeItem } from "./snake";
-import styles from "./grid.module.css";
+import { setMorphOrigin } from "./lib/morphStore";
+import { consumeGalleryReturn, markGalleryReturn } from "./lib/entranceFlag";
+import { computeSnakeOrder, type SnakeItem } from "./lib/snake";
+import styles from "./styles/grid.module.css";
 
 const ENTER_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 

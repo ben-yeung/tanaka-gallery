@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { markGalleryReturn, consumeGalleryReturn } from "./entranceFlag";
+import { markGalleryReturn, consumeGalleryReturn } from "../lib/entranceFlag";
 
 describe("entranceFlag", () => {
   beforeEach(() => sessionStorage.clear());

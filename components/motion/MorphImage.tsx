@@ -2,8 +2,8 @@
 
 import { motion, useAnimationControls, useReducedMotion } from "framer-motion";
 import { useLayoutEffect, useRef } from "react";
-import { takeMorphOrigin } from "./morphStore";
-import styles from "./grid.module.css";
+import { takeMorphOrigin } from "./lib/morphStore";
+import styles from "./styles/grid.module.css";
 
 export function MorphImage({ slug, src, alt }: { slug: string; src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null);

@@ -1,7 +1,7 @@
 "use client";
 
 import { nextSortDir, type SortKey, type SortState } from "@/lib/gallery";
-import styles from "./sortbar.module.css";
+import styles from "./styles/sortbar.module.css";
 
 const ARROW = { asc: "↑", desc: "↓" } as const;
 

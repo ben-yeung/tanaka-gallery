@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { GallerySortBar } from "./GallerySortBar";
+import { GallerySortBar } from "../GallerySortBar";
 
 describe("GallerySortBar", () => {
   it("cycles Artist off → asc on first click", () => {
