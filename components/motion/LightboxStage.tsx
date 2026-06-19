@@ -39,6 +39,11 @@ export function LightboxStage({ slug, src, alt }: { slug: string; src: string; a
         tabIndex={-1}
       >
         <MorphImage slug={slug} src={src} alt={alt} />
+        <span className={styles.expandIcon} aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M8.5 2H12v3.5M5.5 12H2V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
       </div>
 
       <AnimatePresence>
