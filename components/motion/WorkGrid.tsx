@@ -100,6 +100,8 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
                     <span className={styles.title}>{work.title}</span>
                     <span className={styles.sep} aria-hidden="true">•</span>
                     <span className={styles.artist}>{getArtist(work.artistSlug)?.name ?? ""}</span>
+                    <span className={styles.sep} aria-hidden="true">•</span>
+                    <span className={styles.year}>{work.year}</span>
                     {sold && <span className={styles.soldTag}> · sold</span>}
                   </p>
                 </div>
