@@ -47,3 +47,21 @@ export const beat = (i: number): number => CONTENT_START + i * ITEM_STAGGER;
 
 // The i-th list row (artists), beginning a beat after the header.
 export const rowDelay = (i: number): number => CONTENT_START + 0.3 + i * ROW_STAGGER;
+
+// Home "About" editorial section. Splash blocks reuse ITEM_DUR/EASE_OUT above; these
+// are the section-relative delays (seconds from the section entering view) and the
+// emphasis (underline draw / highlight wipe) timing. See
+// docs/superpowers/specs/2026-06-19-home-about-editorial-redesign-design.md §Choreography.
+export const ABOUT_LABEL_DELAY = 0;
+export const ABOUT_LEAD_DELAY = 0.22;
+export const ABOUT_COL_DELAY = [0.66, 0.88, 1.1] as const; // cols 1, 2, 3 rise-in
+export const ABOUT_UNDERLINE_DELAY = 1.0; // underline draws as the lead settles
+export const ABOUT_UNDERLINE_DUR = 0.7;
+export const ABOUT_HL_START = 1.8; // first highlight begins, after the splash lands
+export const ABOUT_HL_STAGGER = 0.65; // gap between highlight wipes (tuned/approved)
+export const ABOUT_HL_DUR = 1.05; // each highlight's wipe (tuned/approved)
+export const ABOUT_HL_EASE = [0.4, 0, 0.2, 1] as const; // gentle ease for the wash
+
+// The i-th body highlight's absolute delay (i = 0,1,2 → cols 1,2,3).
+export const aboutHighlightDelay = (i: number): number =>
+  ABOUT_HL_START + i * ABOUT_HL_STAGGER;
