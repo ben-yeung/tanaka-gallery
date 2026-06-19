@@ -25,3 +25,4 @@
   padding-bottom: 2px;
 }
 .sold { color: var(--stone); }
+.artistLink { color: var(--matcha); font-weight: 600; }
