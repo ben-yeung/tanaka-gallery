@@ -5,7 +5,7 @@ import { getWork } from "@/data/works";
 
 describe("Caption", () => {
   it("renders Title · Artist · Year", () => {
-    render(<Caption work={getWork("untitled-vessel")!} />);
-    expect(screen.getByText("Untitled (Vessel) · Saburo Ohta · 2019")).toBeInTheDocument();
+    render(<Caption work={getWork("mizusashi-ash-fall")!} />);
+    expect(screen.getByText("Mizusashi (Ash Fall) · Saburo Ohta · 2019")).toBeInTheDocument();
   });
 });

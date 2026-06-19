@@ -14,6 +14,6 @@ export interface Work {
   medium: string; // e.g. "stoneware"
   dimensions: string; // e.g. "12 × 8 × 8 in"
   priceCents: number; // USD cents — Stripe-ready
-  image: string; // public path, e.g. "/works/untitled-vessel.svg"
+  image: string; // public path, e.g. "/works/mizusashi-ash-fall.svg"
   available: boolean;
 }
