@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { MorphImage } from "./MorphImage";
 import styles from "@/app/works/[slug]/detail.module.css";
@@ -8,7 +8,10 @@ import styles from "@/app/works/[slug]/detail.module.css";
 export function LightboxStage({ slug, src, alt }: { slug: string; src: string; alt: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const reduce = useReducedMotion();
+  const stageRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
+  // ESC to close
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -18,14 +21,32 @@ export function LightboxStage({ slug, src, alt }: { slug: string; src: string; a
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
+  // Move focus into lightbox on open, restore on close
+  useEffect(() => {
+    if (isOpen) {
+      closeButtonRef.current?.focus();
+    } else {
+      stageRef.current?.focus();
+    }
+  }, [isOpen]);
+
   return (
     <>
-      <div className={styles.stage} onClick={() => setIsOpen(true)}>
+      <div
+        ref={stageRef}
+        className={styles.stage}
+        onClick={() => setIsOpen(true)}
+        tabIndex={-1}
+      >
         <MorphImage slug={slug} src={src} alt={alt} />
       </div>
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            role="dialog"
+            aria-modal={true}
+            aria-label="Artwork lightbox"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -43,6 +64,7 @@ export function LightboxStage({ slug, src, alt }: { slug: string; src: string; a
             }}
           >
             <button
+              ref={closeButtonRef}
               aria-label="Close lightbox"
               onClick={() => setIsOpen(false)}
               style={{
@@ -60,6 +82,7 @@ export function LightboxStage({ slug, src, alt }: { slug: string; src: string; a
             >
               {String.fromCharCode(10005)}
             </button>
+
             <motion.img
               src={src}
               alt={alt}
