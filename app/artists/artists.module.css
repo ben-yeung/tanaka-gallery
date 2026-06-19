@@ -3,7 +3,7 @@
 .haikuLine {
   display: block;
   font-family: var(--font-grotesk), sans-serif;
-  font-size: 14px;
+  font-size: max(14px, 0.73vw);
   letter-spacing: 0.04em;
   color: var(--matcha);
   margin-top: 4px;
@@ -25,15 +25,15 @@
   align-items: baseline;
   gap: 0.6em;
 }
-.name { font-family: var(--font-serif), serif; font-size: clamp(22px, 3vw, 34px); }
+.name { font-family: var(--font-serif), serif; font-size: max(22px, 1.8vw); }
 .nameJa {
   font-family: var(--font-serif), serif;
-  font-size: clamp(14px, 1.6vw, 20px);
+  font-size: max(14px, 1.04vw);
   color: var(--stone);
 }
 
-.origin { font-size: 12px; color: var(--stone); letter-spacing: 0.04em; }
+.origin { font-size: max(12px, 0.65vw); color: var(--stone); letter-spacing: 0.04em; }
 
 /* Profile page */
-.bio { padding: 28px var(--gutter); font-family: var(--font-serif), serif; font-size: clamp(20px, 3vw, 30px); max-width: 70%; }
+.bio { padding: 28px var(--gutter); font-family: var(--font-serif), serif; font-size: max(20px, 1.6vw); max-width: 70%; }
 .detailMeta { padding: 0 var(--gutter); color: var(--stone); }
