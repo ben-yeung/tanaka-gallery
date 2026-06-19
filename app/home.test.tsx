@@ -22,4 +22,11 @@ describe("Home", () => {
     expect(heading).toHaveTextContent("わ");
     expect(heading).toHaveTextContent("さ");
   });
+  it("spotlights a work that links to its detail page", () => {
+    render(<Home />);
+    const detailLink = screen
+      .getAllByRole("link")
+      .find((a) => /^\/works\/.+/.test(a.getAttribute("href") ?? ""));
+    expect(detailLink).toBeDefined();
+  });
 });

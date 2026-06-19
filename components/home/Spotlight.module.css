@@ -1,0 +1,69 @@
+.spotlight {
+  min-width: 0;
+}
+/* Responsive grid: the column count (1–3) is set inline from JS based on how many
+   cards fit the measured width. Keep `gap` in sync with GAP in Spotlight.tsx.
+   overflow:hidden clips the incoming/outgoing cards so the slide reads as one
+   continuous leftward movement (new card in from the right edge, oldest out the left). */
+.grid {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+  overflow: hidden;
+}
+.card {
+  min-width: 0;
+}
+.link {
+  display: block;
+}
+/* Relative frame + absolutely-stacked image keeps a stable 4/3 box (work images are
+   1200x900) while cards slide/fade during a window advance. */
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--paper);
+  border: 1px solid var(--stone);
+  overflow: hidden;
+}
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* Per-card caption: "title • artist" (no counter — the window spans several works). */
+.caption {
+  margin-top: 10px;
+}
+.label {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em;
+}
+.title {
+  font-family: var(--font-serif), serif;
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.link:hover .title {
+  /* Accent underline on hover (keep the title inked) rather than tinting the text. */
+  text-decoration: underline;
+  text-decoration-color: var(--matcha);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+.sep {
+  color: var(--stone);
+}
+.artist {
+  font-family: var(--font-grotesk), sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 13px;
+  /* Accent (matcha) so the artist name stands out from the inked title. */
+  color: var(--matcha);
+}
