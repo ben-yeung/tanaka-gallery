@@ -166,11 +166,11 @@
   font-weight: 600;
   color: var(--stone);
 }
-/* Lead: the opening line, serif and inked, held to 75% width so it spans wide above
+/* Lead: the opening line, serif and inked, held to 80% width so it spans wide above
    the columns without running the full measure. Carries the underline emphasis. */
 .aboutLead {
   margin-top: clamp(16px, 2.4vh, 28px);
-  width: 75%;
+  width: 80%;
   font-family: var(--font-serif), serif;
   color: var(--ink);
   font-size: clamp(22px, 2.8vw, 31px);
