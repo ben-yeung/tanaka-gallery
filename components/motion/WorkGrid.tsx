@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { isFreshLoad } from "./splash/splashGate";
 import { SNAKE_LEAD_MS } from "./splash/timing";
 import type { Work } from "@/data/types";
-import { formatMeta } from "@/data/works";
+import { getArtist } from "@/data/artists";
 import { setMorphOrigin } from "./lib/morphStore";
 import { consumeGalleryReturn, markGalleryReturn } from "./lib/entranceFlag";
 import { computeSnakeOrder, type SnakeItem } from "./lib/snake";
@@ -95,10 +95,14 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
                 <div className={styles.frame}>
                   <img src={work.image} alt={work.title} data-morph={work.slug} loading="lazy" />
                 </div>
-                <p className={`meta ${styles.caption} ${sold ? styles.sold : ""}`}>
-                  {formatMeta(work)}
-                  {sold ? " · sold" : ""}
-                </p>
+                <div className={`${styles.caption} ${sold ? styles.sold : ""}`}>
+                  <p className={styles.label}>
+                    <span className={styles.title}>{work.title}</span>
+                    <span className={styles.sep} aria-hidden="true">•</span>
+                    <span className={styles.artist}>{getArtist(work.artistSlug)?.name ?? ""}</span>
+                    {sold && <span className={styles.soldTag}> · sold</span>}
+                  </p>
+                </div>
               </Link>
             </motion.li>
           );
