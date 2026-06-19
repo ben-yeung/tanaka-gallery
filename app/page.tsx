@@ -3,13 +3,19 @@ import { allWorks } from "@/data/works";
 import { getArtist } from "@/data/artists";
 import { Spotlight, type SpotlightItem } from "@/components/home/Spotlight";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
-import { beat } from "@/components/motion/splash/timing";
+import { Typewriter } from "@/components/motion/splash/Typewriter";
+import { beat, ITEM_STAGGER, typewriterEnd } from "@/components/motion/splash/timing";
 import styles from "./home.module.css";
+
+const SUBHEAD = ["Made in Japan.", "Curated in SF."];
 
 export default function Home() {
   const works = allWorks();
   const count = works.length;
   const jpBeat = beat(1);
+  // The works section holds until the second subheader line finishes typing, then
+  // reveals in its own short cadence (divider → text → grid).
+  const worksBeat = (i: number) => typewriterEnd(SUBHEAD, beat(3)) + i * ITEM_STAGGER;
   const items: SpotlightItem[] = works.map((w) => {
     const artist = getArtist(w.artistSlug);
     return {
@@ -59,12 +65,19 @@ export default function Home() {
             San Francisco.
           </SplashItem>
         </h1>
-        <SplashItem as="p" delay={beat(3)} className={styles.heroSub}>
-          Made in Japan. Curated in SF.
-        </SplashItem>
+        <Typewriter sentences={SUBHEAD} delay={beat(3)} className={styles.heroSub} />
       </section>
-      <SplashItem as="section" delay={beat(4)} className={styles.index}>
-        <div className={styles.indexText}>
+      {/* Divider leads the works reveal so it settles in WITH the section below
+          rather than sitting visible from first paint. */}
+      <SplashItem
+        as="div"
+        variant="inline"
+        delay={worksBeat(0)}
+        className={styles.divider}
+        aria-hidden="true"
+      />
+      <section className={styles.index}>
+        <SplashItem as="div" delay={worksBeat(1)} className={styles.indexText}>
           <p className={styles.note}>
             <span className={styles.noteHead}>Tanaka&apos;s favorites.</span>
             <span className={styles.noteSub}>
@@ -101,6 +114,10 @@ export default function Home() {
           conclusion from different directions: that less, done carefully, is
           enough.
         </p>
+        </SplashItem>
+        <SplashItem as="div" delay={worksBeat(2)} className={styles.spotlightWrap}>
+          <Spotlight items={items} />
+        </SplashItem>
       </section>
     </>
   );

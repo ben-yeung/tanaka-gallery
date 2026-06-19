@@ -8,7 +8,8 @@ import { itemVariants, inlineVariants, furiganaVariants } from "./variants";
 type Tag = "div" | "span" | "p" | "li" | "section" | "header" | "h1";
 
 type SplashItemProps = {
-  children: React.ReactNode;
+  // Optional so purely decorative elements (e.g. a divider) can self-close.
+  children?: React.ReactNode;
   as?: Tag;
   delay?: number;
   variant?: "item" | "inline" | "furigana";

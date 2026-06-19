@@ -1,6 +1,11 @@
 .hero {
   padding: clamp(64px, 16vh, 200px) var(--gutter);
-  border-bottom: 1px solid var(--stone);
+}
+/* Hairline between the hero and the works section. Lives as its own element (not the
+   hero's border) so it can reveal with the works section instead of at first paint. */
+.divider {
+  height: 1px;
+  background: var(--stone);
 }
 .tagline {
   font-size: clamp(20px, 6vw, 116px);
@@ -73,6 +78,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+/* Spotlight grid track: min-width:0 (matches .indexText) so the 1fr column can shrink
+   below the grid's intrinsic width instead of overflowing at narrow viewports. */
+.spotlightWrap {
+  min-width: 0;
 }
 .indexLink {
   display: inline-block;
