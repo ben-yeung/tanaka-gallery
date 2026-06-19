@@ -9,7 +9,6 @@
   padding: clamp(28px, 3vw, 56px) var(--gutter) 96px;
   margin: 0;
 }
-.tile { display: block; }
 .frame {
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -21,7 +20,6 @@
   height: 100%;
   object-fit: cover;
 }
-.tile:hover .caption { color: var(--matcha); }
 .caption {
   margin-top: 10px;
   font-size: clamp(12px, 0.4vw + 11px, 16px);
@@ -30,3 +28,24 @@
 .head { padding: 40px var(--gutter) 0; }
 .subhead { margin-top: 8px; color: var(--stone); }
 .morphWrap { display: block; }
+.cell {
+  margin: 0;
+}
+.unit {
+  display: block;
+  color: inherit;
+}
+.unit:hover .frame {
+  filter: brightness(1.04);
+}
+.unit:hover .caption {
+  color: var(--matcha);
+}
+.dimmed .frame {
+  filter: brightness(0.5);
+  opacity: 0.55;
+  transition: filter 300ms ease, opacity 300ms ease;
+}
+.dimmed .caption {
+  opacity: 0.55;
+}
