@@ -66,6 +66,9 @@
   align-items: start;
 }
 .indexText {
+  /* min-width:0 lets the grid track shrink below the text's intrinsic width
+     instead of overflowing at narrow (tablet) viewports. */
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

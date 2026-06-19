@@ -1,4 +1,6 @@
 .spotlight {
+  /* min-width:0 so this grid column can shrink instead of overflowing its track. */
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
