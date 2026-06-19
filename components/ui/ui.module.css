@@ -1,6 +1,6 @@
 .nav {
   /* Fluid nav type: ~13px near 1440px, scaling to a 19px cap reached at 4K (3840px). */
-  --nav-fz: clamp(12px, calc(9.4px + 0.25vw), 19px);
+  --nav-fz: max(12px, calc(9.4px + 0.25vw));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -119,18 +119,18 @@
 }
 .tagline {
   font-family: var(--font-serif), serif;
-  font-size: clamp(16px, 0.85vw, 22px);
+  font-size: max(16px, 0.85vw);
 }
 .notice {
   display: block;
   font-family: var(--font-grotesk), sans-serif;
-  font-size: clamp(14px, 0.75vw, 18px);
+  font-size: max(14px, 0.75vw);
   letter-spacing: 0.04em;
   color: var(--stone);
   margin-top: 8px;
 }
 .footerMeta {
-  font-size: clamp(12px, 0.65vw, 15px);
+  font-size: max(12px, 0.65vw);
   color: var(--stone);
   letter-spacing: 0.04em;
 }
