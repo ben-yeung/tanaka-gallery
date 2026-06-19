@@ -1,12 +1,23 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
+import { endFreshLoad } from "@/components/motion/splash/splashGate";
 import { WORDMARK_DELAY, LINK_DELAY, LINK_STAGGER } from "@/components/motion/splash/timing";
 import styles from "./ui.module.css";
 
 export function Nav() {
+  // End the fresh-load window after the initial page hydrates, so client-side
+  // navigations don't replay the splash. Runs exactly once — Nav lives in the
+  // root layout and does not remount on navigation. Doing this in a post-hydration
+  // effect (not a pre-hydration timer) is what keeps SSR and the first client
+  // render in agreement and prevents the hydration mismatch.
+  useEffect(() => {
+    endFreshLoad();
+  }, []);
+
   return (
     <nav className={styles.nav}>
       <Link href="/" className={styles.wordmark}>
