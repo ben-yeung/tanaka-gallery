@@ -29,4 +29,14 @@ describe("Home", () => {
       .find((a) => /^\/works\/.+/.test(a.getAttribute("href") ?? ""));
     expect(detailLink).toBeDefined();
   });
+
+  it("renders the About heading", () => {
+    render(<Home />);
+    expect(screen.getByRole("heading", { name: /^about$/i })).toBeInTheDocument();
+  });
+
+  it("renders the About copy", () => {
+    render(<Home />);
+    expect(screen.getByText(/debuted in 2001/i)).toBeInTheDocument();
+  });
 });

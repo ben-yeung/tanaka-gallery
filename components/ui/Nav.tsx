@@ -33,6 +33,11 @@ export function Nav() {
           </Link>
         </SplashItem>
         <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER}>
+          <Link href="/#about" className={styles.navLink}>
+            About
+          </Link>
+        </SplashItem>
+        <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER * 2}>
           <Link href="/artists" className={styles.navLink}>
             Artists
           </Link>
