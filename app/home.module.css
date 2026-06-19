@@ -131,6 +131,9 @@
 .about {
   padding: 40px var(--gutter) 96px;
   border-top: 1px solid var(--stone);
+  /* The nav "About" link jumps here via /#about; give the landing a gap above the
+     heading instead of pinning the border-top flush to the viewport edge. */
+  scroll-margin-top: clamp(24px, 6vh, 64px);
 }
 /* Section title: serif and inked, same scale as the "Tanaka's favorites" head
    but without the matcha underline (this is a heading, not a label). */
