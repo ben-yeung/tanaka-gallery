@@ -59,6 +59,16 @@
      would otherwise sit below the footer is given to the Selected Works section. */
   flex: 1;
   padding: 40px var(--gutter) 96px;
+  /* Two columns: text/link on the left, spotlight on the right. */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.indexText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .indexLink {
   display: inline-block;
@@ -108,5 +118,8 @@
   }
   .sf {
     display: block;
+  }
+  .index {
+    grid-template-columns: 1fr;
   }
 }
