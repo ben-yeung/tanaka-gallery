@@ -1,0 +1,6 @@
+/* Stacks kanji and Latin layers in the same grid cell.
+   cursor: pointer signals interactivity without a role="button". */
+.wabiToggle {
+  display: inline-grid;
+  cursor: pointer;
+}
