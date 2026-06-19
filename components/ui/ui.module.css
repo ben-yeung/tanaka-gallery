@@ -1,10 +1,10 @@
 .nav {
-  /* Fluid nav type: ~13px near 1440px, scaling to a 19px cap reached at 4K (3840px). */
-  --nav-fz: clamp(12px, calc(9.4px + 0.25vw), 19px);
+  /* Fluid nav type: proportional to 1080p — 14.2px at 1920px, scales linearly above. */
+  --nav-fz: max(12px, 0.74vw);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px var(--gutter);
+  padding: max(24px, 1.25vw) var(--gutter);
   border-bottom: 1px solid var(--stone);
 }
 .wordmark {
@@ -32,7 +32,7 @@
 }
 .navLinks {
   display: flex;
-  gap: 28px;
+  gap: max(28px, 1.5vw);
 }
 .navLink {
   font-family: var(--font-grotesk), sans-serif;
@@ -84,11 +84,11 @@
   color: var(--stone);
 }
 .themeToggleFooter .themeToggleIcon {
-  font-size: 20px;
+  font-size: max(20px, 1vw);
 }
 
 .footer {
-  padding: 48px var(--gutter);
+  padding: max(48px, 2.5vw) var(--gutter);
   border-top: 1px solid var(--stone);
   display: flex;
   justify-content: space-between;
@@ -99,11 +99,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px;
+  gap: max(14px, 0.75vw);
 }
 .socials {
   display: flex;
-  gap: 14px;
+  gap: max(14px, 0.75vw);
 }
 .social {
   display: inline-flex;
@@ -114,23 +114,23 @@
   color: var(--matcha);
 }
 .social svg {
-  width: 20px;
-  height: 20px;
+  width: max(20px, 1vw);
+  height: max(20px, 1vw);
 }
 .tagline {
   font-family: var(--font-serif), serif;
-  font-size: 16px;
+  font-size: max(16px, 0.85vw);
 }
 .notice {
   display: block;
   font-family: var(--font-grotesk), sans-serif;
-  font-size: 14px;
+  font-size: max(14px, 0.75vw);
   letter-spacing: 0.04em;
   color: var(--stone);
   margin-top: 8px;
 }
 .footerMeta {
-  font-size: 12px;
+  font-size: max(12px, 0.65vw);
   color: var(--stone);
   letter-spacing: 0.04em;
 }

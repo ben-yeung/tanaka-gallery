@@ -46,7 +46,7 @@
 }
 .title {
   font-family: var(--font-serif), serif;
-  font-size: clamp(15px, 1.4vw, 19px);
+  font-size: max(15px, 1vw);
   line-height: 1.15;
   color: var(--ink);
 }
@@ -63,7 +63,7 @@
 .artist {
   font-family: var(--font-grotesk), sans-serif;
   letter-spacing: 0.04em;
-  font-size: 13px;
+  font-size: max(13px, 0.68vw);
   /* Accent (matcha) so the artist name stands out from the inked title. */
   color: var(--matcha);
 }

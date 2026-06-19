@@ -6,7 +6,7 @@
   --stone: #7e766a;
 
   --measure: 68ch;
-  --gutter: clamp(20px, 5vw, 64px);
+  --gutter: max(20px, 3.33vw);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,12 +72,12 @@ h1, h2, h3 { font-family: var(--font-serif), Georgia, serif; font-weight: 400; l
   font-family: var(--font-grotesk), sans-serif;
   text-transform: none;
   letter-spacing: 0.04em;
-  font-size: 14px;
+  font-size: max(14px, 0.8vw);
   font-weight: 500;
 }
 
 .meta {
-  font-size: 13px;
+  font-size: max(13px, 0.75vw);
   letter-spacing: 0.02em;
   color: var(--stone);
 }
