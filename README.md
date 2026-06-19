@@ -1,4 +1,4 @@
-# Tanaka's Gallery
+# Tanaka's Gallery [[Live](https://tanaka-gallery.vercel.app/)]
 
 A minimal gallery curation site for fictional Japanese art collector Rin Tanaka.
 
