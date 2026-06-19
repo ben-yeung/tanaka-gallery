@@ -50,6 +50,7 @@ export function furiganaVariants(reduce: boolean, delay = 0): Variants {
   }
   return {
     hidden: { opacity: 0, y: -8 },
+    // Deliberately no blur here: the readings are tiny — a settle (Y) reads cleaner than blur.
     visible: {
       opacity: 1,
       y: 0,

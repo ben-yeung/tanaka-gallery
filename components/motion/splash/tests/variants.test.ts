@@ -28,6 +28,13 @@ describe("splash variants — full motion", () => {
     expect(v.hidden).not.toHaveProperty("y");
     expect(v.visible).not.toHaveProperty("y");
   });
+  it("furigana full motion rises (Y) and fades, no blur", () => {
+    const v = furiganaVariants(false);
+    expect(v.hidden).toMatchObject({ opacity: 0 });
+    expect(v.hidden).toHaveProperty("y");
+    expect(v.hidden).not.toHaveProperty("filter");
+    expect(v.visible).toMatchObject({ opacity: 1, y: 0 });
+  });
   it("applies a per-element delay to the visible transition", () => {
     const v = itemVariants(false, 0.9);
     expect((v.visible as { transition: { delay: number } }).transition.delay).toBe(0.9);
@@ -42,6 +49,8 @@ describe("splash variants — reduced motion (opacity-only)", () => {
   });
   it("inline items are opacity-only", () => {
     expect(inlineVariants(true).hidden).toEqual({ opacity: 0 });
+    expect(inlineVariants(true).visible).not.toHaveProperty("y");
+    expect(inlineVariants(true).visible).not.toHaveProperty("filter");
   });
   it("furigana is opacity-only (no settle Y)", () => {
     expect(furiganaVariants(true).hidden).toEqual({ opacity: 0 });
