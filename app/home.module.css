@@ -98,7 +98,7 @@
   /* Accent underline (sized to the text, not the full block) instead of tinting the type.
      padding clears the descenders (p, j, y) so the line sits below them, not through them. */
   border-bottom: 2px solid var(--matcha);
-  padding-bottom: 0.22em;
+  padding-bottom: 0.025em;
 }
 /* Subline: the original muted italic, a step down from the header. */
 .noteSub {

@@ -41,8 +41,10 @@ export default function Home() {
       <section className={styles.index}>
         <div className={styles.indexText}>
           <p className={styles.note}>
-            <span className={styles.noteHead}>Contemporary art projects.</span>
-            <span className={styles.noteSub}>Timeless artists, from Tokyo to the Bay.</span>
+            <span className={styles.noteHead}>Tanaka's favorites.</span>
+            <span className={styles.noteSub}>
+              Timeless artists, from Tokyo to the Bay.
+            </span>
           </p>
           <Link href="/works" className={styles.indexLink}>
             View ({count}) Selected Works →
