@@ -26,8 +26,10 @@
   font-size: 0.7em;
   margin-right: -0.34em;
 }
-/* "San Francisco." — inline on desktop, its own line on mobile (see media query). */
+/* "San Francisco." — inline-block so the outer motion.span's translateX applies.
+   display: block override in the mobile media query below still wins on small screens. */
 .sf {
+  display: inline-block;
   white-space: nowrap;
 }
 
