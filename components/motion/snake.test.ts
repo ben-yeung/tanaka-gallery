@@ -36,4 +36,22 @@ describe("computeSnakeOrder", () => {
     expect(seq).toHaveLength(2);
     expect(seq.every((s) => s.fromTop)).toBe(true); // single row = row 0
   });
+  it("returns empty array for empty input", () => {
+    const seq = computeSnakeOrder([]);
+    expect(seq).toEqual([]);
+  });
+  it("respects custom rowTolerance to separate items into different rows", () => {
+    const seq = computeSnakeOrder(
+      [
+        { key: "a", top: 0, left: 0 },
+        { key: "b", top: 5, left: 10 },
+      ],
+      3 // tolerance = 3, so |0-5|=5 > 3 → different rows
+    );
+    expect(seq).toHaveLength(2);
+    const aStep = seq.find((s) => s.key === "a");
+    const bStep = seq.find((s) => s.key === "b");
+    expect(aStep!.fromTop).toBe(true); // row 0
+    expect(bStep!.fromTop).toBe(false); // row 1
+  });
 });

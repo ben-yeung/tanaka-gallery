@@ -17,6 +17,8 @@ export function computeSnakeOrder(items: SnakeItem[], rowTolerance = 8): SnakeSt
     if (!row) {
       row = { top: it.top, items: [] };
       rows.push(row);
+    } else {
+      row.top = Math.min(row.top, it.top);
     }
     row.items.push(it);
   }
