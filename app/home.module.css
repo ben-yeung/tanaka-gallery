@@ -59,14 +59,12 @@
      would otherwise sit below the footer is given to the Selected Works section. */
   flex: 1;
   padding: 40px var(--gutter) 96px;
-  /* Two columns: text/link fills the left, the spotlight is an auto-width panel
-     hugging the right. The single grid row is stretched to the section's full height
-     (minmax(0,1fr)) so the spotlight frame can scale to fit it (see Spotlight.module.css). */
+  /* Two columns: text/link fills the left, the spotlight is a fixed-width panel
+     (sized in Spotlight.module.css) hugging the right. */
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: minmax(0, 1fr);
   gap: clamp(32px, 6vw, 96px);
-  align-items: stretch;
+  align-items: start;
 }
 .indexText {
   /* min-width:0 lets the grid track shrink below the text's intrinsic width
@@ -127,7 +125,5 @@
   }
   .index {
     grid-template-columns: 1fr;
-    /* Stacked: let rows size to content instead of stretching one to the section. */
-    grid-template-rows: none;
   }
 }
