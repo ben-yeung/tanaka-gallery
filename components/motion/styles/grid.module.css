@@ -46,6 +46,12 @@
   font-size: max(12px, 0.65vw);
   color: var(--matcha);
 }
+.year {
+  font-family: var(--font-grotesk), sans-serif;
+  letter-spacing: 0.04em;
+  font-size: max(12px, 0.65vw);
+  color: var(--stone);
+}
 .soldTag {
   font-family: var(--font-grotesk), sans-serif;
   font-size: max(12px, 0.65vw);
