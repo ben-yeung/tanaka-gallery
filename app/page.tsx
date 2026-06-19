@@ -7,15 +7,16 @@ import { Typewriter } from "@/components/motion/splash/Typewriter";
 import { AboutReveal, AboutRevealItem } from "@/components/motion/about/AboutReveal";
 import { Underline, Highlight } from "@/components/motion/about/marks";
 import {
+  beat,
+  ITEM_STAGGER,
+  typewriterEnd,
   ABOUT_LABEL_DELAY,
   ABOUT_LEAD_DELAY,
   ABOUT_COL_DELAY,
 } from "@/components/motion/splash/timing";
-import { beat, ITEM_STAGGER, typewriterEnd } from "@/components/motion/splash/timing";
 import styles from "./home.module.css";
 
 const SUBHEAD = ["Made in Japan.", "Curated in SF."];
-
 
 export default function Home() {
   const works = allWorks();

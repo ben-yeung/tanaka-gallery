@@ -18,7 +18,7 @@
   right: -0.06em;
   top: 30%;
   bottom: 0;
-  background: rgba(124, 138, 107, 0.24);
+  background: rgb(var(--matcha-rgb) / 0.24);
   transform-origin: left center;
 }
 /* Relative so the phrase stacks above its (earlier-sibling, absolutely-positioned) wash. */
