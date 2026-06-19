@@ -38,12 +38,18 @@ Francisco.**
 margins. Art photography is **edge-to-edge, no border**. Metadata is terse:
 `Title · Artist · Year`. Voice is clipped — one sentence maximum, anywhere.
 
-**Type.**
-- **EB Garamond** (serif display) — work titles, artist names, the tagline. The
-  "quiet Japanese sensibility / serif accent."
-- **Inter** (grotesk) — all functional text: nav, captions, metadata, UI. Small
-  sizes, tight tracking. The disciplined web stand-in for the brief's Helvetica
-  (no paid license required).
+**Type — three roles, deliberate contrast.**
+- **EB Garamond** (serif display) — large headers, work titles, artist names, the
+  tagline. The "quiet Japanese sensibility / serif accent."
+- **Space Grotesk** (modern grotesque) — subheaders / section labels. The
+  "robotica" register: a modern, faintly mechanical voice that visibly contrasts
+  the serif headers above it.
+- **Inter** (neutral grotesk) — all body and functional text: nav, captions,
+  metadata, UI. Small sizes, tight tracking. The disciplined web stand-in for the
+  brief's Helvetica (no paid license required).
+
+Pairing intent: serif header → grotesque subheader → neutral body, so the
+typographic hierarchy is legible by *typeface*, not just size.
 
 **Theming — light & dark, system-preference driven.** Two themes expressed as
 CSS custom-property token sets, switched via `prefers-color-scheme`. Components
@@ -55,7 +61,7 @@ cream/beige paper feel; dark mode is an ink/charcoal/slate aesthetic.
 | `--paper` | ground | `#F4F1EA` | `#1C1E1F` |
 | `--ink` | text | `#1A1A18` | `#E8E6E0` |
 | `--matcha` | accent (links/hover, Inquire) | `#7C8A6B` | `#8C9B7A` |
-| `--stone` | hairlines, captions, secondary | `#B8B0A1` | `#5A5E60` |
+| `--stone` | hairlines, captions, secondary | `#7E766A` | `#5A5E60` |
 
 (Hex values are starting points, tunable during implementation.)
 
@@ -203,7 +209,8 @@ lib/stripe.ts, components/checkout/CheckoutPanel.`
 
 ## 9. Roadmap (Phases)
 
-1. **Foundation** — Next.js + TS scaffold, fonts (EB Garamond/Inter), token-based
+1. **Foundation** — Next.js + TS scaffold, fonts (EB Garamond / Space Grotesk /
+   Inter), token-based
    theming with light/dark via `prefers-color-scheme`, root layout + Nav/Footer.
 2. **Data + content model** — `types.ts`, `artists.ts`, `works.ts` + selectors,
    placeholder imagery.
