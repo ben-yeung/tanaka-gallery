@@ -18,6 +18,24 @@ Keep each generated image consistent with the work's caption in `data/works.ts`
 every flat work is a watercolor, sumi-e ink work, woodblock print, or nihonga painting
 — all under the same quiet, painterly Japanese lens.
 
+### Output resolution
+
+**All images must be generated at 4:3 landscape (1200 × 900 px).** Both the gallery
+grid and the homepage preview cards render at `aspect-ratio: 4 / 3`. Non-4:3 images
+are center-cropped by `object-fit: cover` and will lose subject matter at the top and
+bottom (portrait) or sides (square).
+
+Every prompt below already includes `--ar 4:3` as the final line. For generators that
+don't use Midjourney-style flags, use the equivalent setting:
+
+| Generator | Setting |
+|---|---|
+| Midjourney | `--ar 4:3` (already in each prompt) |
+| DALL-E 3 (API) | `"size": "1792x1344"` (closest native 4:3) |
+| DALL-E 3 (ChatGPT) | ask for "landscape, 4 by 3 ratio" in the prompt |
+| Stable Diffusion | `width=1200 height=900` (or `768×576` for lighter jobs) |
+| Firefly / other | choose the **4:3 Landscape** preset before generating |
+
 ## Style spine (inherited by every prompt)
 
 Wabi-sabi (侘び寂び): muted earthy palette — clay, ash, stone, sumi black, raw linen,
@@ -49,6 +67,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > length of raw weathered wood against a dim plaster wall, lit by soft low light from
 > one side, long soft shadow pooling into deep *ma*. Painterly still life, sumi-e and
 > nihonga restraint, muted earthy palette, wabi-sabi.
+> --ar 4:3
 
 ### `chawan-no-7` — *Chawan No. 7* · 2021 · wood-fired Bizen stoneware · 5 × 5 × 4 in
 
@@ -59,6 +78,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > of a bamboo tea whisk (chasen) out of focus beside it in the half-light. Single soft
 > side light, deep shadow, large empty space above. Painterly, muted, sumi-e quietness,
 > wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -72,6 +92,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > asymmetry. Resting on raw weathered wood by a tatami edge, low single side light, soft
 > shadow, generous empty space. Painterly still life, muted earthy palette, sumi-e
 > restraint, wabi-sabi.
+> --ar 4:3
 
 ### `kuro-hagi-bowl` — *Kuro-Hagi Bowl* · 2022 · Hagi-ware stoneware · 5 × 5 × 3 in
 
@@ -80,6 +101,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > Matte, aged, never glossy. Resting off-center on raw wood against dim plaster, a
 > single soft side light raking across the rim, deep shadow, large empty space around
 > it. Painterly, muted, heavy and still, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -93,6 +115,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > of an intimate, imperfect bowl. Resting on a tatami edge in half-light, soft side
 > light grazing the lip, deep shadow, breathing *ma* around it. Painterly,
 > near-monochrome, sumi-e stillness, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -106,6 +129,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > ink-touched pines low at one side, no hard edges anywhere. Asymmetric, a high empty
 > horizon, muted and atmospheric. Painterly, restrained, suibokuga sensibility,
 > wabi-sabi.
+> --ar 4:3
 
 ### `rain-faint` — *Rain, Faint* · 2023 · watercolor on paper · 18 × 24 in
 
@@ -114,6 +138,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > the rest soft wet paper and bleed. Muted ash and faded-indigo tones, visible
 > granulation, dry paper breathing around the marks. Quiet, minimal, off-center,
 > melancholy stillness. Painterly Japanese-traditional watercolor, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -126,6 +151,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > wash for the petals, wet grey-brown for the branch, a faint bleed halo at the edges.
 > The bare-branch restraint of traditional Japanese flower painting, asymmetric,
 > generous *ma*. Muted, quiet, painterly, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -138,6 +164,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > sky for a matte cold light, a single dark line of distant trees low across the frame.
 > The presence of a deer implied by absence, not shown. Vast horizontal emptiness,
 > muted, cold, still. Nihonga-influenced watercolor, deep *ma*, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -151,6 +178,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > bone-dry split-brush texture at the tail, vast untouched paper around it as *ma*.
 > Tall vertical format, the mark placed high and to one side. Monochrome sumi ink,
 > nihonga restraint, calm and unhurried, wabi-sabi.
+> --ar 4:3
 
 ### `line-study-ix` — *Line Study IX* · 2022 · ink on paper · 30 × 22 in
 
@@ -159,6 +187,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > that frays into pale grey at top and bottom. Wet pooling ink, granulation, the line
 > losing itself in repetition. Deep saturation at the core, breathing white paper to
 > either side. Monochrome ink on warm paper, meditative, restrained, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -171,6 +200,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > small open gap where it ends. Visible bristle streaks, a faint bleed halo, the ink
 > pooling darker at the turn. Square format, the circle off-center with vast empty paper
 > around it as *ma*. Monochrome sumi-e, Zen restraint, calm and unhurried, wabi-sabi.
+> --ar 4:3
 
 ---
 
@@ -184,6 +214,7 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > hand-printing and fine keyblock outlines. Snowflakes as tiny reserved-white flecks.
 > Vertical format, hushed, nobody present. Restrained shin-hanga palette, muted,
 > wabi-sabi melancholy.
+> --ar 4:3
 
 ---
 
@@ -197,3 +228,4 @@ backgrounds, props, text, watermarks, signatures, people, hands.
 > iron-red, the gold aged and tarnished rather than bright. Asymmetric, the stem low and
 > to one side, with a vast quiet ground above as *ma*. Restrained, elegant, still,
 > wabi-sabi.
+> --ar 4:3
