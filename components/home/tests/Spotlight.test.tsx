@@ -42,12 +42,10 @@ describe("Spotlight", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("renders the active work's title, artist, meta and bio", () => {
+  it("renders the active work's title and artist in one label", () => {
     render(<Spotlight items={items} shuffle={identity} />);
     expect(screen.getByText("Alpha")).toBeInTheDocument();
     expect(screen.getByText("Mika Narita")).toBeInTheDocument();
-    expect(screen.getByText("ink · 2020 · 1 in")).toBeInTheDocument();
-    expect(screen.getByText(/Lines\./)).toBeInTheDocument();
   });
 
   it("shows a zero-padded counter", () => {

@@ -102,15 +102,16 @@ export function Spotlight({
           )}
         </div>
         <div className={styles.caption}>
-          <p className={styles.title}>{active.title}</p>
-          <p className={styles.artist}>{active.artistName}</p>
-          <p className={styles.meta}>{active.meta}</p>
-          <p className={styles.bio}>{active.artistBio}</p>
+          <p className={styles.label}>
+            <span className={styles.title}>{active.title}</span>
+            <span className={styles.sep} aria-hidden="true">•</span>
+            <span className={styles.artist}>{active.artistName}</span>
+          </p>
+          <span className={styles.counter} aria-hidden="true">
+            {pad2(index + 1)} / {pad2(total)}
+          </span>
         </div>
       </Link>
-      <p className={styles.counter} aria-hidden="true">
-        {pad2(index + 1)} / {pad2(total)}
-      </p>
     </div>
   );
 }

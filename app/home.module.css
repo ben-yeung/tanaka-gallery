@@ -59,9 +59,10 @@
      would otherwise sit below the footer is given to the Selected Works section. */
   flex: 1;
   padding: 40px var(--gutter) 96px;
-  /* Two columns: text/link on the left, spotlight on the right. */
+  /* Two columns: text/link fills the left, the spotlight is a fixed-width panel
+     (sized in Spotlight.module.css) hugging the right. */
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto;
   gap: clamp(32px, 6vw, 96px);
   align-items: start;
 }

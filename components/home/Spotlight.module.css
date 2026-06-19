@@ -1,6 +1,8 @@
 .spotlight {
-  /* min-width:0 so this grid column can shrink instead of overflowing its track. */
+  /* Scaled-down panel: roughly half the previous full-column width. min-width:0 keeps
+     it shrinkable in its grid track. */
   min-width: 0;
+  width: clamp(220px, 22vw, 320px);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -24,43 +26,52 @@
   height: 100%;
   object-fit: contain;
 }
+/* Single caption row: "title • artist" left-aligned, counter pinned to the right. */
 .caption {
-  margin-top: 14px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.label {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em;
 }
 .title {
   font-family: var(--font-serif), serif;
-  font-size: clamp(18px, 1.8vw, 24px);
+  font-size: clamp(15px, 1.4vw, 19px);
   line-height: 1.15;
   color: var(--ink);
+}
+.link:hover .title {
+  color: var(--matcha);
+}
+.sep {
+  color: var(--stone);
 }
 .artist {
   font-family: var(--font-grotesk), sans-serif;
   letter-spacing: 0.04em;
-  font-size: 14px;
-  margin-top: 4px;
-  color: var(--ink);
-}
-.link:hover .artist {
-  color: var(--matcha);
-}
-.meta {
   font-size: 13px;
-  letter-spacing: 0.02em;
   color: var(--stone);
-  margin-top: 6px;
 }
-.bio {
-  font-family: var(--font-grotesk), sans-serif;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--stone);
-  margin-top: 8px;
-}
-.bio::before { content: "\201C"; }
-.bio::after { content: "\201D"; }
 .counter {
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-grotesk), sans-serif;
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--stone);
+}
+
+/* Mobile: the spotlight stacks below the text (see home.module.css) and reclaims
+   full width rather than staying a narrow panel. */
+@media (max-width: 600px) {
+  .spotlight {
+    width: 100%;
+  }
 }
