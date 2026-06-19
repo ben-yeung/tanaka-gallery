@@ -51,7 +51,11 @@
   color: var(--ink);
 }
 .link:hover .title {
-  color: var(--matcha);
+  /* Accent underline on hover (keep the title inked) rather than tinting the text. */
+  text-decoration: underline;
+  text-decoration-color: var(--matcha);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
 }
 .sep {
   color: var(--stone);
