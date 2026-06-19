@@ -1,21 +1,22 @@
 const KEY = "tg:gallery-return";
 
-export function markGalleryReturn(): void {
+export function markGalleryReturn(path: string): void {
   try {
-    sessionStorage.setItem(KEY, "1");
+    sessionStorage.setItem(KEY, path);
   } catch {
     // sessionStorage unavailable (SSR / privacy mode) — entrance simply always plays.
   }
 }
 
-export function consumeGalleryReturn(): boolean {
+export function consumeGalleryReturn(path: string): boolean {
   try {
-    if (sessionStorage.getItem(KEY)) {
-      sessionStorage.removeItem(KEY);
-      return true;
+    const stored = sessionStorage.getItem(KEY);
+    if (stored !== null) {
+      sessionStorage.removeItem(KEY); // read-once: always clear
+      return stored === path;
     }
   } catch {
-    // ignore
+    // sessionStorage unavailable — treat as unset, entrance plays.
   }
   return false;
 }

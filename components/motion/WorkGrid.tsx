@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import type { Work } from "@/data/types";
@@ -15,10 +16,11 @@ const ENTER_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean }) {
   const reduce = useReducedMotion();
   const units = useRef(new Map<string, HTMLElement>());
+  const pathname = usePathname();
 
   // Run the entrance once on mount.
   useEffect(() => {
-    if (consumeGalleryReturn()) return; // returned from a detail morph → no re-entrance
+    if (consumeGalleryReturn(pathname)) return; // returned from a detail morph on same grid → no re-entrance
     const items: SnakeItem[] = [];
     units.current.forEach((el, key) => {
       const r = el.getBoundingClientRect();
@@ -70,7 +72,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
                   else units.current.delete(work.slug);
                 }}
                 href={`/works/${work.slug}`}
-                className={`${styles.unit} ${dim && sold ? styles.dimmed : ""}`}
+                className={`${styles.unit}${dim && sold ? " " + styles.dimmed : ""}`}
                 onClick={(e) => {
                   const img = e.currentTarget.querySelector("img");
                   if (img) {
@@ -79,7 +81,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
                       top: r.top, left: r.left, width: r.width, height: r.height,
                     });
                   }
-                  markGalleryReturn();
+                  markGalleryReturn(pathname);
                 }}
               >
                 <div className={styles.frame}>

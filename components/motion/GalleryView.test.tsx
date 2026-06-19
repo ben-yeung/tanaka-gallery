@@ -18,7 +18,7 @@ const work = (slug: string, artistSlug: string, year: number): Work => ({
   priceCents: 0, image: `/works/${slug}.svg`, available: true,
 });
 
-// "saburo-ohta" and "ken-arai" resolve via real data/artists; pick known slugs.
+// Both fixtures use "saburo-ohta" which resolves via real data/artists.
 const works = [work("old", "saburo-ohta", 2018), work("new", "saburo-ohta", 2023)];
 
 describe("GalleryView", () => {

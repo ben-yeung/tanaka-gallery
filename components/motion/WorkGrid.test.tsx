@@ -1,5 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+
+vi.mock("next/navigation", () => ({ usePathname: () => "/works" }));
+
 import { WorkGrid } from "./WorkGrid";
 import type { Work } from "@/data/types";
 import styles from "./grid.module.css";
