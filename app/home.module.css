@@ -1,0 +1,16 @@
+.hero {
+  padding: clamp(64px, 16vh, 200px) var(--gutter);
+  border-bottom: 1px solid var(--stone);
+}
+.tagline { font-size: clamp(40px, 9vw, 120px); line-height: 0.98; max-width: 14ch; }
+.index { padding: 40px var(--gutter) 96px; }
+.indexLink {
+  display: inline-block;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.indexLink:hover { color: var(--matcha); }
+.note { font-family: var(--font-serif), serif; font-style: italic; color: var(--stone); margin-bottom: 28px; max-width: 40ch; }
