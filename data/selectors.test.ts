@@ -10,7 +10,7 @@ describe("artist selectors", () => {
     expect(getArtist("nobody")).toBeUndefined();
   });
   it("lists all artists", () => {
-    expect(allArtists().length).toBeGreaterThanOrEqual(8);
+    expect(allArtists().length).toBe(10);
   });
 });
 
