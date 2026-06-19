@@ -64,6 +64,7 @@ export function Spotlight({
   const [start, setStart] = useState(0);
   const [cols, setCols] = useState(1);
   const [paused, setPaused] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Shuffle once, after mount (client only), to avoid a hydration mismatch.
@@ -86,13 +87,24 @@ export function Spotlight({
   const total = items.length;
   const n = Math.max(1, Math.min(cols, Math.max(total, 1)));
 
-  // Auto-advance the window by one work — disabled under reduced motion, while
-  // hovered, or when every work is already visible.
+  // Track tab visibility: backgrounded tabs pause framer-motion's rAF-driven exit
+  // animations, so advancing there would queue cards that can't finish exiting and
+  // pile them up on return. We freeze the carousel while hidden instead.
   useEffect(() => {
-    if (reduce || paused || total <= n) return;
+    if (typeof document === "undefined") return;
+    const onVisibility = () => setHidden(document.hidden);
+    onVisibility();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  // Auto-advance the window by one work — disabled under reduced motion, while
+  // hovered, while the tab is hidden, or when every work is already visible.
+  useEffect(() => {
+    if (reduce || paused || hidden || total <= n) return;
     const id = setInterval(() => setStart((s) => (s + 1) % total), ADVANCE_MS);
     return () => clearInterval(id);
-  }, [reduce, paused, total, n]);
+  }, [reduce, paused, hidden, total, n]);
 
   if (total === 0) return null;
 

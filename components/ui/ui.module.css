@@ -22,15 +22,13 @@
   /* em-based so the mark scales with the nav font instead of staying fixed. */
   width: 1.7em;
   height: 1.7em;
+  /* The mark is drawn inside 6/48 (12.5%) of viewBox padding, so its visible edge is
+     inset from the SVG box. Pull it back by that inset so the mark — and thus the whole
+     wordmark — starts flush with the page gutter, aligning the nav with the hero and
+     section content edge instead of the SVG's transparent margin. */
+  margin-left: calc(1.7em * -0.125);
   /* logo strokes use currentColor, so this tints the mark with the accent. */
   color: var(--matcha);
-}
-/* Wordmark sits far left; this group is pushed far right by the nav's
-   space-between, keeping the color-mode toggle pinned to the edge. */
-.navRight {
-  display: flex;
-  align-items: center;
-  gap: 28px;
 }
 .navLinks {
   display: flex;
@@ -50,12 +48,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.9em;
+  /* Sized to the icon (min-width reserves the slot pre-mount to avoid a layout shift)
+     rather than a wide centered box, so the mark's right edge sits on the gutter like
+     the other nav items instead of floating inset. */
+  min-width: 1.5em;
   height: 1.9em;
   padding: 0;
+  /* Offset the icon's small internal whitespace so its optical right edge meets the
+     gutter (tunable). */
+  margin-right: -0.1em;
   border: 0;
   background: none;
-  color: var(--stone);
+  /* Inherit the nav's ink color so the toggle matches the link labels (was muted stone). */
+  color: inherit;
   cursor: pointer;
   font-size: var(--nav-fz);
   line-height: 0;
@@ -66,7 +71,20 @@
 }
 .themeToggleIcon {
   display: inline-flex;
-  font-size: 1.2em;
+  /* Larger than the label type so the solid mark is clearly noticeable. */
+  font-size: 1.5em;
+}
+/* Footer variant: drop the nav-edge sizing and sit in the social icon row,
+   matching the 20px social marks (stone ink, matcha hover via .themeToggle:hover). */
+.themeToggleFooter {
+  min-width: 0;
+  height: auto;
+  margin-right: 0;
+  font-size: inherit;
+  color: var(--stone);
+}
+.themeToggleFooter .themeToggleIcon {
+  font-size: 20px;
 }
 
 .footer {

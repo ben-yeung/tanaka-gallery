@@ -74,6 +74,32 @@ describe("Spotlight", () => {
     expect(screen.getByText("Beta")).toBeInTheDocument();
   });
 
+  it("does not auto-advance while the tab is hidden", () => {
+    // Backgrounded tabs pause framer-motion's rAF-driven exit animations, so if the
+    // interval keeps firing the un-exited cards pile up. Advancing must pause while hidden.
+    vi.useFakeTimers();
+    const visibility = { value: "visible" as DocumentVisibilityState };
+    Object.defineProperty(document, "visibilityState", {
+      configurable: true,
+      get: () => visibility.value,
+    });
+    Object.defineProperty(document, "hidden", {
+      configurable: true,
+      get: () => visibility.value === "hidden",
+    });
+    try {
+      render(<Spotlight items={items} shuffle={identity} />);
+      visibility.value = "hidden";
+      act(() => { document.dispatchEvent(new Event("visibilitychange")); });
+      act(() => { vi.advanceTimersByTime(5000); });
+      // No advance happened while hidden: the second work never entered the window.
+      expect(screen.queryByText("Beta")).toBeNull();
+    } finally {
+      delete (document as unknown as { visibilityState?: unknown }).visibilityState;
+      delete (document as unknown as { hidden?: unknown }).hidden;
+    }
+  });
+
   it("does not auto-advance under reduced motion", () => {
     mockReducedMotion(true);
     vi.useFakeTimers();
