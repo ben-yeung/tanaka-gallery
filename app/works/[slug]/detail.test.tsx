@@ -11,9 +11,9 @@ vi.mock("next/navigation", () => ({
 
 describe("WorkDetail", () => {
   it("renders a known work", async () => {
-    const ui = await WorkDetail({ params: Promise.resolve({ slug: "untitled-vessel" }) });
+    const ui = await WorkDetail({ params: Promise.resolve({ slug: "mizusashi-ash-fall" }) });
     render(ui);
-    expect(screen.getByRole("heading", { name: "Untitled (Vessel)" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Mizusashi (Ash Fall)" })).toBeInTheDocument();
   });
   it("calls notFound for an unknown slug", async () => {
     await expect(

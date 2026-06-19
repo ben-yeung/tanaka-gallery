@@ -10,13 +10,13 @@ describe("artist selectors", () => {
     expect(getArtist("nobody")).toBeUndefined();
   });
   it("lists all artists", () => {
-    expect(allArtists().length).toBeGreaterThanOrEqual(8);
+    expect(allArtists().length).toBe(10);
   });
 });
 
 describe("work selectors", () => {
   it("returns a work by slug", () => {
-    expect(getWork("untitled-vessel")?.title).toBe("Untitled (Vessel)");
+    expect(getWork("mizusashi-ash-fall")?.title).toBe("Mizusashi (Ash Fall)");
   });
   it("returns undefined for an unknown slug", () => {
     expect(getWork("nope")).toBeUndefined();
@@ -40,6 +40,6 @@ describe("work selectors", () => {
 
 describe("formatMeta", () => {
   it("formats Title · Artist · Year", () => {
-    expect(formatMeta(getWork("untitled-vessel")!)).toBe("Untitled (Vessel) · Saburo Ohta · 2019");
+    expect(formatMeta(getWork("mizusashi-ash-fall")!)).toBe("Mizusashi (Ash Fall) · Saburo Ohta · 2019");
   });
 });

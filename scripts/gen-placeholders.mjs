@@ -10,18 +10,20 @@ mkdirSync(outDir, { recursive: true });
 
 // Minimal duplicate of the works list (slug + title) to avoid importing TS.
 const works = [
-  ["untitled-vessel", "Untitled (Vessel)"],
-  ["vessel-no-7", "Vessel No. 7"],
+  ["mizusashi-ash-fall", "Mizusashi (Ash Fall)"],
+  ["chawan-no-7", "Chawan No. 7"],
+  ["hagi-chawan", "Hagi Chawan"],
+  ["kuro-hagi-bowl", "Kuro-Hagi Bowl"],
+  ["black-raku-chawan", "Black Raku Chawan"],
+  ["mist-over-tateyama", "Mist Over Tateyama"],
+  ["rain-faint", "Rain, Faint"],
+  ["late-plum", "Late Plum"],
+  ["field-before-snow", "Field, Before Snow"],
   ["line-study-iii", "Line Study III"],
   ["line-study-ix", "Line Study IX"],
-  ["fold-small", "Fold (Small)"],
-  ["room-401", "Room 401"],
-  ["room-902", "Room 902"],
-  ["black-on-black-ii", "Black on Black II"],
-  ["low-light", "Low Light"],
-  ["cast-no-3", "Cast No. 3"],
-  ["quench", "Quench"],
-  ["quench-ii", "Quench II"],
+  ["enso-one-breath", "Ensō (One Breath)"],
+  ["snow-yanaka", "Snow, Yanaka"],
+  ["camellia-single-stem", "Camellia, Single Stem"],
 ];
 
 // Muted, earthy stand-in palette (image is theme-agnostic).
