@@ -35,5 +35,5 @@
 .origin { font-size: 12px; color: var(--stone); letter-spacing: 0.04em; }
 
 /* Profile page */
-.bio { padding: 28px var(--gutter); font-family: var(--font-serif), serif; font-size: clamp(20px, 3vw, 30px); max-width: 26ch; }
+.bio { padding: 28px var(--gutter); font-family: var(--font-serif), serif; font-size: clamp(20px, 3vw, 30px); max-width: 70%; }
 .detailMeta { padding: 0 var(--gutter); color: var(--stone); }
