@@ -41,7 +41,7 @@ export default function Home() {
       <section className={styles.index}>
         <div className={styles.indexText}>
           <p className={styles.note}>
-            <span className={styles.noteHead}>Tanaka's favorites.</span>
+            <span className={styles.noteHead}>Tanaka&apos;s favorites.</span>
             <span className={styles.noteSub}>
               Timeless artists, from Tokyo to the Bay.
             </span>

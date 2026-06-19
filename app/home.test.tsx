@@ -16,11 +16,6 @@ describe("Home", () => {
     const link = screen.getByRole("link", { name: /selected works/i });
     expect(link).toHaveAttribute("href", "/works");
   });
-  it("renders the spotlight counter starting at the first of all works", () => {
-    render(<Home />);
-    // 12 works in data/works.ts; counter is zero-padded and starts at 01.
-    expect(screen.getByText("01 / 12")).toBeInTheDocument();
-  });
   it("spotlights a work that links to its detail page", () => {
     render(<Home />);
     const detailLink = screen

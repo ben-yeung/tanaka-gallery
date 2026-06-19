@@ -48,23 +48,18 @@ describe("Spotlight", () => {
     expect(screen.getByText("Mika Narita")).toBeInTheDocument();
   });
 
-  it("shows a zero-padded counter", () => {
+  it("links a visible work to its detail page", () => {
     render(<Spotlight items={items} shuffle={identity} />);
-    expect(screen.getByText("01 / 02")).toBeInTheDocument();
-  });
-
-  it("links the active work to its detail page", () => {
-    render(<Spotlight items={items} shuffle={identity} />);
+    // jsdom has no ResizeObserver, so the window stays at 1 card: the first work.
     expect(screen.getByRole("link")).toHaveAttribute("href", "/works/a");
   });
 
-  it("auto-advances to the next work after the interval", () => {
+  it("advances the window by one work after the interval", () => {
     vi.useFakeTimers();
     render(<Spotlight items={items} shuffle={identity} />);
     expect(screen.getByText("Alpha")).toBeInTheDocument();
     act(() => { vi.advanceTimersByTime(5000); });
     expect(screen.getByText("Beta")).toBeInTheDocument();
-    expect(screen.getByText("02 / 02")).toBeInTheDocument();
   });
 
   it("pauses auto-advance while the pointer is over it", () => {
@@ -84,8 +79,8 @@ describe("Spotlight", () => {
     vi.useFakeTimers();
     render(<Spotlight items={items} shuffle={identity} />);
     act(() => { vi.advanceTimersByTime(5000); });
+    // Window does not advance; the first work stays put.
     expect(screen.getByText("Alpha")).toBeInTheDocument();
-    // Under reduced motion the static <img> branch renders (no AnimatePresence cross-fade).
     const img = screen.getByRole("img");
     expect(img).toHaveAttribute("src", "/works/a.svg");
   });
