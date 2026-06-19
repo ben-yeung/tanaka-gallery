@@ -119,18 +119,18 @@
 }
 .tagline {
   font-family: var(--font-serif), serif;
-  font-size: 16px;
+  font-size: clamp(16px, 0.85vw, 22px);
 }
 .notice {
   display: block;
   font-family: var(--font-grotesk), sans-serif;
-  font-size: 14px;
+  font-size: clamp(14px, 0.75vw, 18px);
   letter-spacing: 0.04em;
   color: var(--stone);
   margin-top: 8px;
 }
 .footerMeta {
-  font-size: 12px;
+  font-size: clamp(12px, 0.65vw, 15px);
   color: var(--stone);
   letter-spacing: 0.04em;
 }

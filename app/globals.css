@@ -72,12 +72,12 @@ h1, h2, h3 { font-family: var(--font-serif), Georgia, serif; font-weight: 400; l
   font-family: var(--font-grotesk), sans-serif;
   text-transform: none;
   letter-spacing: 0.04em;
-  font-size: 14px;
+  font-size: clamp(14px, 0.8vw, 18px);
   font-weight: 500;
 }
 
 .meta {
-  font-size: 13px;
+  font-size: clamp(13px, 0.75vw, 17px);
   letter-spacing: 0.02em;
   color: var(--stone);
 }

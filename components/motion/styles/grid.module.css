@@ -32,23 +32,23 @@
 }
 .title {
   font-family: var(--font-serif), serif;
-  font-size: clamp(13px, 0.9vw, 16px);
+  font-size: clamp(13px, 0.85vw, 22px);
   line-height: 1.15;
   color: var(--ink);
 }
 .sep {
   color: var(--stone);
-  font-size: 12px;
+  font-size: clamp(12px, 0.65vw, 16px);
 }
 .artist {
   font-family: var(--font-grotesk), sans-serif;
   letter-spacing: 0.04em;
-  font-size: 12px;
+  font-size: clamp(12px, 0.65vw, 16px);
   color: var(--matcha);
 }
 .soldTag {
   font-family: var(--font-grotesk), sans-serif;
-  font-size: 12px;
+  font-size: clamp(12px, 0.65vw, 16px);
   color: var(--stone);
 }
 .sold {
