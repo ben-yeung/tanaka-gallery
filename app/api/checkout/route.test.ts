@@ -19,11 +19,11 @@ async function call(body: unknown) {
 
 describe("POST /api/checkout", () => {
   it("creates a PaymentIntent for the work price and returns the client secret", async () => {
-    const res = await call({ slug: "untitled-vessel" });
+    const res = await call({ slug: "mizusashi-ash-fall" });
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ clientSecret: "pi_test_secret" });
     expect(create).toHaveBeenCalledWith(
-      expect.objectContaining({ amount: 120000, currency: "usd" }),
+      expect.objectContaining({ amount: 130000, currency: "usd" }),
     );
   });
   it("404s for an unknown work", async () => {
