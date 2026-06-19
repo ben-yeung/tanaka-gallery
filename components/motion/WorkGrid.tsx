@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import type { Work } from "@/data/types";
 import { formatMeta } from "@/data/works";
 import { setMorphOrigin } from "./morphStore";
+import { consumeGalleryReturn, markGalleryReturn } from "./entranceFlag";
 import { computeSnakeOrder, type SnakeItem } from "./snake";
 import styles from "./grid.module.css";
 
@@ -17,6 +18,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
 
   // Run the entrance once on mount.
   useEffect(() => {
+    if (consumeGalleryReturn()) return; // returned from a detail morph → no re-entrance
     const items: SnakeItem[] = [];
     units.current.forEach((el, key) => {
       const r = el.getBoundingClientRect();
@@ -77,6 +79,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
                       top: r.top, left: r.left, width: r.width, height: r.height,
                     });
                   }
+                  markGalleryReturn();
                 }}
               >
                 <div className={styles.frame}>
