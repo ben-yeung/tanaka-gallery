@@ -62,7 +62,15 @@ export function Footer() {
       <div>
         <span className={styles.tagline}>Made in Japan. Curated in SF.</span>
         <span className={styles.notice}>
-          Purely a mockup of a gallery design I had in mind • Artworks are AI generated
+          Purely a mockup of a gallery design I had in mind • Artworks are{" "}
+          <a
+            href="https://github.com/ben-yeung/openrouter-image-gen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.aiGenLink}
+          >
+            AI generated
+          </a>{" "}
           for display only
         </span>
       </div>

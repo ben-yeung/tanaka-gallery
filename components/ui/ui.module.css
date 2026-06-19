@@ -129,6 +129,11 @@
   color: var(--stone);
   margin-top: 8px;
 }
+.aiGenLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .footerMeta {
   font-size: max(12px, 0.65vw);
   color: var(--stone);
