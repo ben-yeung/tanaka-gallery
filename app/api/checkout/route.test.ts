@@ -35,4 +35,12 @@ describe("POST /api/checkout", () => {
     const res = await call({ slug: "line-study-ix" });
     expect(res.status).toBe(404);
   });
+  it("400s for a malformed (non-JSON) body", async () => {
+    const { POST } = await import("./route");
+    const res = await POST(
+      new Request("http://t/api/checkout", { method: "POST", body: "not json" }),
+    );
+    expect(res.status).toBe(400);
+    expect(create).not.toHaveBeenCalled();
+  });
 });

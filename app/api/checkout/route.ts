@@ -9,7 +9,12 @@ import { getWork } from "@/data/works";
 
 export async function POST(req: Request) {
   assertTestMode();
-  const { slug } = (await req.json()) as { slug?: string };
+  let slug: string | undefined;
+  try {
+    ({ slug } = (await req.json()) as { slug?: string });
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
   const work = slug ? getWork(slug) : undefined;
   if (!work || !work.available) {
     return NextResponse.json({ error: "Work unavailable" }, { status: 404 });
