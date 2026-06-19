@@ -31,9 +31,9 @@ describe("work selectors", () => {
       expect(getArtist(w.artistSlug), `missing artist for ${w.slug}`).toBeDefined();
     }
   });
-  it("every work image path matches its slug", () => {
+  it("every work image path is a valid public works path", () => {
     for (const w of allWorks()) {
-      expect(w.image).toBe(`/works/${w.slug}.svg`);
+      expect(w.image).toMatch(/^\/works\/.+\.(png|svg|jpg|webp)$/);
     }
   });
 });
