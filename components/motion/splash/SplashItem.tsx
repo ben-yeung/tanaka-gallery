@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import { isFreshLoad } from "./splashGate";
 import { itemVariants, inlineVariants, furiganaVariants } from "./variants";
 
@@ -24,14 +24,25 @@ export function SplashItem({
   className,
 }: SplashItemProps) {
   const reduce = !!useReducedMotion();
-  // Snapshot the gate ONCE during render (before any effects), so client
-  // navigations and the gate's post-paint flip never restart an animation.
-  const [play] = useState(() => isFreshLoad());
+  // Start false so server HTML and the initial hydration render agree: neither
+  // carries Framer's inline opacity/filter/transform styles, avoiding the
+  // React 19 hydration mismatch where the lazy initializer can be re-invoked
+  // after endFreshLoad() has run. useLayoutEffect flips to true before the
+  // first paint on a fresh load, so the animation still starts from opacity-0
+  // with no visible flash. Client-side navigations leave play=false (gate
+  // already closed by Nav's effect) so the splash never replays.
+  const [play, setPlay] = useState(false);
+  useLayoutEffect(() => {
+    if (isFreshLoad()) setPlay(true);
+  }, []);
   // Same element type on both the playing and at-rest paths (avoids hydration mismatch).
   const Comp = motion[as] as React.ElementType;
 
   if (!play) {
-    return <Comp className={className}>{children}</Comp>;
+    // key="idle" pairs with key="anim" below: different keys force Framer to
+    // remount (not update) when play flips, so initial="hidden" is treated as
+    // a fresh mount and the opacity-0 starting state is applied.
+    return <Comp key="idle" className={className}>{children}</Comp>;
   }
 
   const variants =
@@ -42,7 +53,7 @@ export function SplashItem({
         : itemVariants(reduce, delay);
 
   return (
-    <Comp className={className} initial="hidden" animate="visible" variants={variants}>
+    <Comp key="anim" className={className} initial="hidden" animate="visible" variants={variants}>
       {children}
     </Comp>
   );
