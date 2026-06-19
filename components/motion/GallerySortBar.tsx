@@ -2,6 +2,8 @@
 
 import { nextSortDir, type SortKey, type SortState } from "@/lib/gallery";
 import styles from "./styles/sortbar.module.css";
+import { SplashItem } from "./splash/SplashItem";
+import { SORTBAR_DELAY } from "./splash/timing";
 
 const ARROW = { asc: "↑", desc: "↓" } as const;
 
@@ -16,7 +18,7 @@ export function GallerySortBar({
     onChange({ ...state, [key]: nextSortDir(key, state[key]) });
 
   return (
-    <div className={styles.bar}>
+    <SplashItem as="div" delay={SORTBAR_DELAY} className={styles.bar}>
       <span className={styles.label}>Sort</span>
 
       <button
@@ -45,6 +47,6 @@ export function GallerySortBar({
       >
         Available only
       </button>
-    </div>
+    </SplashItem>
   );
 }
