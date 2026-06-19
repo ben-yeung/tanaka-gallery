@@ -17,4 +17,19 @@ describe("Nav", () => {
     expect(screen.getByRole("link", { name: /artists/i })).toHaveAttribute("href", "/artists");
     expect(screen.getByText(/Tanaka/)).toBeInTheDocument();
   });
+
+  it("links About to the home anchor", () => {
+    render(<Nav />);
+    const about = screen.getByRole("link", { name: /about/i });
+    expect(about).toHaveAttribute("href", "/#about");
+  });
+
+  it("orders the section links Works, About, Artists", () => {
+    render(<Nav />);
+    const labels = screen
+      .getAllByRole("link")
+      .map((a) => a.textContent?.trim())
+      .filter((t): t is string => ["Works", "About", "Artists"].includes(t ?? ""));
+    expect(labels).toEqual(["Works", "About", "Artists"]);
+  });
 });
