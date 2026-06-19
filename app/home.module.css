@@ -140,6 +140,13 @@
   .index {
     grid-template-columns: 1fr;
   }
+  .aboutLead {
+    width: 100%;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
 }
 
 .about {
@@ -149,27 +156,34 @@
      heading instead of pinning the border-top flush to the viewport edge. */
   scroll-margin-top: clamp(24px, 6vh, 64px);
 }
-/* Section title: serif and inked, same scale as the "Tanaka's favorites" head
-   but without the matcha underline (this is a heading, not a label). */
-.aboutHead {
-  font-family: var(--font-serif), serif;
-  color: var(--ink);
-  font-size: clamp(22px, 3vw, 38px);
-  line-height: 1.1;
+/* Section kicker: the <h2> "About" kept for semantics but set as a small uppercase
+   grotesk label (not the former serif heading). */
+.aboutLabel {
+  font-family: var(--font-grotesk), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--stone);
 }
-/* Lead: the opening line, set larger in the heading serif to anchor the column. */
+/* Lead: the opening line, serif and inked, held to 75% width so it spans wide above
+   the columns without running the full measure. Carries the underline emphasis. */
 .aboutLead {
-  margin-top: clamp(20px, 3vh, 36px);
-  max-width: 52ch;
+  margin-top: clamp(16px, 2.4vh, 28px);
+  width: 75%;
   font-family: var(--font-serif), serif;
   color: var(--ink);
-  font-size: clamp(20px, 2.6vw, 28px);
-  line-height: 1.4;
+  font-size: clamp(22px, 2.8vw, 31px);
+  line-height: 1.3;
 }
-/* Body: the remaining paragraphs, a step down in the grotesk for readability. */
-.aboutBody {
-  margin-top: 18px;
-  max-width: 52ch;
+/* Body: three equal columns across the full section width. */
+.aboutGrid {
+  margin-top: clamp(28px, 4vh, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(28px, 3vw, 36px);
+}
+.aboutCol {
   font-family: var(--font-grotesk), sans-serif;
   color: var(--ink);
   font-size: 17px;

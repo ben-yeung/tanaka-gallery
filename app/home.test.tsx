@@ -39,4 +39,21 @@ describe("Home", () => {
     render(<Home />);
     expect(screen.getByText(/debuted in 2001/i)).toBeInTheDocument();
   });
+
+  it("renders the re-flowed closing line", () => {
+    render(<Home />);
+    expect(screen.getByText(/less, done carefully, is more/i)).toBeInTheDocument();
+  });
+
+  it("renders the underlined lead clause", () => {
+    render(<Home />);
+    expect(screen.getByText("Ren Tanaka left Osaka at nineteen")).toBeInTheDocument();
+  });
+
+  it("renders the three highlighted body phrases", () => {
+    render(<Home />);
+    expect(screen.getByText("Japanese artists")).toBeInTheDocument();
+    expect(screen.getByText("falling in love")).toBeInTheDocument();
+    expect(screen.getByText("flower shop")).toBeInTheDocument();
+  });
 });

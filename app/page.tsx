@@ -4,20 +4,19 @@ import { getArtist } from "@/data/artists";
 import { Spotlight, type SpotlightItem } from "@/components/home/Spotlight";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
 import { Typewriter } from "@/components/motion/splash/Typewriter";
-import { ScrollReveal, ScrollRevealItem } from "@/components/motion/ScrollReveal";
-import { beat, ITEM_STAGGER, typewriterEnd } from "@/components/motion/splash/timing";
+import { AboutReveal, AboutRevealItem } from "@/components/motion/about/AboutReveal";
+import { Underline, Highlight } from "@/components/motion/about/marks";
+import {
+  beat,
+  ITEM_STAGGER,
+  typewriterEnd,
+  ABOUT_LABEL_DELAY,
+  ABOUT_LEAD_DELAY,
+  ABOUT_COL_DELAY,
+} from "@/components/motion/splash/timing";
 import styles from "./home.module.css";
 
 const SUBHEAD = ["Made in Japan.", "Curated in SF."];
-
-// About narrative (after the lead). Plain strings — apostrophes don't need escaping
-// inside JS, only in JSX text.
-const ABOUT_BODY = [
-  "He spent his twenties absorbing San Francisco: the Japantown shops, the Mission murals, and the quiet rigor of Japanese artists he discovered in the back rooms of galleries that no longer exist.",
-  "He started buying work before he could afford to, falling in love with pieces by obscure artists trying to make a living.",
-  "Tanaka's Gallery debuted in 2001 in a small San Francisco storefront that still smelled like the flower shop it once was.",
-  "Tanaka's curation brought together artists who reached the same conclusion from different directions: that less, done carefully, is enough.",
-];
 
 export default function Home() {
   const works = allWorks();
@@ -102,23 +101,37 @@ export default function Home() {
           <Spotlight items={items} />
         </SplashItem>
       </section>
-      {/* About sits below the fold, so it reveals on scroll-into-view (or immediately
-          when the page loads already showing it, e.g. /#about) rather than on the load
-          timer. Same rise-in look as the rest of the homepage, staggered as it enters. */}
-      <ScrollReveal as="section" id="about" className={styles.about}>
-        <ScrollRevealItem as="h2" className={styles.aboutHead}>
+      {/* About sits below the fold: a single useInView trigger (latched once) reveals
+          the splash blocks on scroll-into-view, then the underline and highlights draw
+          in as a slower emphasis pass. Timing: spec §Choreography. */}
+      <AboutReveal id="about" className={styles.about}>
+        <AboutRevealItem as="h2" delay={ABOUT_LABEL_DELAY} className={styles.aboutLabel}>
           About
-        </ScrollRevealItem>
-        <ScrollRevealItem as="p" className={styles.aboutLead}>
-          Ren Tanaka left Osaka at nineteen with a duffel bag and an admission
-          letter from SFAI he wasn&apos;t sure he deserved.
-        </ScrollRevealItem>
-        {ABOUT_BODY.map((para, i) => (
-          <ScrollRevealItem key={i} as="p" className={styles.aboutBody}>
-            {para}
-          </ScrollRevealItem>
-        ))}
-      </ScrollReveal>
+        </AboutRevealItem>
+        <AboutRevealItem as="p" delay={ABOUT_LEAD_DELAY} className={styles.aboutLead}>
+          <Underline>Ren Tanaka left Osaka at nineteen</Underline> with a duffel bag and
+          an admission letter from SFAI he wasn&apos;t sure he deserved.
+        </AboutRevealItem>
+        <div className={styles.aboutGrid}>
+          <AboutRevealItem as="p" delay={ABOUT_COL_DELAY[0]} className={styles.aboutCol}>
+            He spent his twenties absorbing San Francisco: the Japantown shops, the
+            Mission murals, and the quiet rigor of{" "}
+            <Highlight index={0}>Japanese artists</Highlight> he discovered in back rooms
+            of galleries that no longer exist.
+          </AboutRevealItem>
+          <AboutRevealItem as="p" delay={ABOUT_COL_DELAY[1]} className={styles.aboutCol}>
+            He started buying work before he could afford to,{" "}
+            <Highlight index={1}>falling in love</Highlight> with pieces by obscure
+            artists trying to make a living &mdash; artists who had reached the same
+            conclusion: that less, done carefully, is more.
+          </AboutRevealItem>
+          <AboutRevealItem as="p" delay={ABOUT_COL_DELAY[2]} className={styles.aboutCol}>
+            Tanaka&apos;s Gallery debuted in 2001 in a small San Francisco storefront
+            that still smelled like the <Highlight index={2}>flower shop</Highlight> it
+            once was.
+          </AboutRevealItem>
+        </div>
+      </AboutReveal>
     </>
   );
 }

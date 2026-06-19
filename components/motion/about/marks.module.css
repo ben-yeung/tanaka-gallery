@@ -1,0 +1,36 @@
+/* Lead underline: a 2px matcha bar pinned under the clause, scaled in by Framer
+   (scaleX 0→1 from the left). transform-origin lives here; Framer drives transform. */
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: var(--matcha);
+  transform-origin: left center;
+}
+/* Body highlight: a translucent matcha wash behind the phrase, occupying the lower
+   ~70% of the line (taller + lighter — the values tuned during design). Scaled in by
+   Framer the same way as the bar; the phrase text paints above it (see .text). */
+.wash {
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  top: 30%;
+  bottom: 0;
+  background: rgb(var(--matcha-rgb) / 0.24);
+  transform-origin: left center;
+}
+/* Relative so the phrase stacks above its (earlier-sibling, absolutely-positioned) wash. */
+.text {
+  position: relative;
+}
+/* Dark mode: bump the wash opacity — the lighter dark-mode matcha needs more presence. */
+@media (prefers-color-scheme: dark) {
+  .wash {
+    background: rgb(var(--matcha-rgb) / 0.36);
+  }
+}
+:global([data-theme="dark"]) .wash {
+  background: rgb(var(--matcha-rgb) / 0.36);
+}

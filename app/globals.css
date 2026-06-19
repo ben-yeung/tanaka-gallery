@@ -2,6 +2,7 @@
   --paper: #f4f1ea;
   --ink: #1a1a18;
   --matcha: #7c8a6b;
+  --matcha-rgb: 124 138 107;
   --stone: #7e766a;
 
   --measure: 68ch;
@@ -13,6 +14,7 @@
     --paper: #1c1e1f;
     --ink: #e8e6e0;
     --matcha: #8c9b7a;
+    --matcha-rgb: 140 155 122;
     --stone: #5a5e60;
   }
 }
@@ -24,12 +26,14 @@
   --paper: #f4f1ea;
   --ink: #1a1a18;
   --matcha: #7c8a6b;
+  --matcha-rgb: 124 138 107;
   --stone: #7e766a;
 }
 :root[data-theme="dark"] {
   --paper: #1c1e1f;
   --ink: #e8e6e0;
   --matcha: #8c9b7a;
+  --matcha-rgb: 140 155 122;
   --stone: #5a5e60;
 }
 
@@ -41,7 +45,7 @@
   transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease;
 }
 
-html { font-family: var(--font-sans), system-ui, sans-serif; }
+html { font-family: var(--font-sans), system-ui, sans-serif; scroll-behavior: smooth; }
 
 body {
   background: var(--paper);
