@@ -121,10 +121,10 @@ export function Spotlight({
               key={work.slug}
               layout
               className={styles.card}
-              initial={reduce ? false : { opacity: 0, x: "45%" }}
+              initial={reduce ? false : { opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
-              exit={reduce ? undefined : { opacity: 0, x: "-45%" }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              exit={reduce ? undefined : { opacity: 0, x: "-100%" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link href={`/works/${work.slug}`} className={styles.link}>
                 <div className={styles.frame}>

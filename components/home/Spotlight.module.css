@@ -2,11 +2,14 @@
   min-width: 0;
 }
 /* Responsive grid: the column count (1–3) is set inline from JS based on how many
-   cards fit the measured width. Keep `gap` in sync with GAP in Spotlight.tsx. */
+   cards fit the measured width. Keep `gap` in sync with GAP in Spotlight.tsx.
+   overflow:hidden clips the incoming/outgoing cards so the slide reads as one
+   continuous leftward movement (new card in from the right edge, oldest out the left). */
 .grid {
   display: grid;
   gap: 16px;
   align-items: start;
+  overflow: hidden;
 }
 .card {
   min-width: 0;
