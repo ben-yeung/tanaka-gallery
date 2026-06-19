@@ -31,4 +31,10 @@ describe("GallerySortBar", () => {
     render(<GallerySortBar state={{ dim: false, year: "desc" }} onChange={() => {}} />);
     expect(screen.getByRole("button", { name: /year/i })).toHaveAttribute("aria-pressed", "true");
   });
+  it("preserves active sort keys when toggling the availability pill", () => {
+    const onChange = vi.fn();
+    render(<GallerySortBar state={{ dim: false, artist: "asc" }} onChange={onChange} />);
+    fireEvent.click(screen.getByRole("button", { name: /available only/i }));
+    expect(onChange).toHaveBeenCalledWith({ dim: true, artist: "asc" });
+  });
 });
