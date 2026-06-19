@@ -24,25 +24,32 @@ export function SplashItem({
   className,
 }: SplashItemProps) {
   const reduce = !!useReducedMotion();
-  // Start false so server HTML and the initial hydration render agree: neither
-  // carries Framer's inline opacity/filter/transform styles, avoiding the
-  // React 19 hydration mismatch where the lazy initializer can be re-invoked
-  // after endFreshLoad() has run. useLayoutEffect flips to true before the
-  // first paint on a fresh load, so the animation still starts from opacity-0
-  // with no visible flash. Client-side navigations leave play=false (gate
-  // already closed by Nav's effect) so the splash never replays.
-  const [play, setPlay] = useState(false);
+  // Three-state: null = not yet mounted (SSR + initial hydration render),
+  // false = mounted but no animation (client-side nav), true = animating.
+  // Starts null so the server HTML and the initial client render both agree:
+  // both ship opacity:0, so the browser never flashes visible content before
+  // JS hydrates. useLayoutEffect flips to true on a fresh load (animation
+  // plays) or false on a client nav (content becomes visible immediately,
+  // no replay). The null→false transition happens before paint.
+  const [play, setPlay] = useState<boolean | null>(null);
   useLayoutEffect(() => {
-    if (isFreshLoad()) setPlay(true);
+    setPlay(isFreshLoad() ? true : false);
   }, []);
   // Same element type on both the playing and at-rest paths (avoids hydration mismatch).
   const Comp = motion[as] as React.ElementType;
 
-  if (!play) {
+  if (play !== true) {
+    // play=null: initial load, pre-hydration — hidden so SSR content doesn't
+    // flash visible in the browser before the splash animation begins.
+    // play=false: client-side nav — show normally, no animation.
     // key="idle" pairs with key="anim" below: different keys force Framer to
-    // remount (not update) when play flips, so initial="hidden" is treated as
-    // a fresh mount and the opacity-0 starting state is applied.
-    return <Comp key="idle" className={className}>{children}</Comp>;
+    // remount (not update) when play flips to true, so initial="hidden" is
+    // treated as a fresh mount and the opacity-0 starting state is applied.
+    return (
+      <Comp key="idle" className={className} style={play === null ? { opacity: 0 } : undefined}>
+        {children}
+      </Comp>
+    );
   }
 
   const variants =
