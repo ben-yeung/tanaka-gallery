@@ -1,4 +1,3 @@
-// app/page.tsx
 import Link from "next/link";
 import { allWorks } from "@/data/works";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
@@ -21,7 +20,7 @@ export default function Home() {
               <SplashItem
                 as="span"
                 variant="furigana"
-                delay={jpBeat + FURIGANA_DELAY}
+                delay={jpBeat}
                 className={styles.rt}
               >
                 わ
@@ -33,7 +32,7 @@ export default function Home() {
               <SplashItem
                 as="span"
                 variant="furigana"
-                delay={jpBeat + FURIGANA_DELAY}
+                delay={jpBeat}
                 className={styles.rt}
               >
                 さ

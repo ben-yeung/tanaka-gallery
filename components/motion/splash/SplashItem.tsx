@@ -1,4 +1,3 @@
-// components/motion/splash/SplashItem.tsx
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -27,6 +26,7 @@ export function SplashItem({
   // Snapshot the gate ONCE during render (before any effects), so client
   // navigations and the gate's post-paint flip never restart an animation.
   const [play] = useState(() => isFreshLoad());
+  // Same element type on both the playing and at-rest paths (avoids hydration mismatch).
   const Comp = motion[as] as React.ElementType;
 
   if (!play) {

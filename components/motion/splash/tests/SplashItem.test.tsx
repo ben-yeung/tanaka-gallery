@@ -1,4 +1,3 @@
-// components/motion/splash/tests/SplashItem.test.tsx
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 
