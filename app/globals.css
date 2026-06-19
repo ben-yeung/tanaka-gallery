@@ -1,0 +1,54 @@
+:root {
+  --paper: #f4f1ea;
+  --ink: #1a1a18;
+  --matcha: #7c8a6b;
+  --stone: #7e766a;
+
+  --measure: 68ch;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1e1f;
+    --ink: #e8e6e0;
+    --matcha: #8c9b7a;
+    --stone: #5a5e60;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-family: var(--font-sans), system-ui, sans-serif; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+h1, h2, h3 { font-family: var(--font-serif), Georgia, serif; font-weight: 400; line-height: 1.05; }
+
+.subhead {
+  font-family: var(--font-grotesk), sans-serif;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.meta {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--stone);
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
