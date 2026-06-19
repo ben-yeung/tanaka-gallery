@@ -34,6 +34,7 @@
 .unit {
   display: block;
   color: inherit;
+  will-change: transform, opacity, filter;
 }
 .unit:hover .frame {
   filter: brightness(1.04);
