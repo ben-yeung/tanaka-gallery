@@ -31,7 +31,7 @@ export default async function WorkDetail({ params }: Params) {
           <h1 className={styles.title}>{work.title}</h1>
           <p className={`meta ${styles.line}`}>
             {artist ? (
-              <Link href={`/artists/${artist.slug}`}>{artist.name}</Link>
+              <Link href={`/artists/${artist.slug}`} className={styles.artistLink}>{artist.name}</Link>
             ) : (
               "Unknown"
             )}
