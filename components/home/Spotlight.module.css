@@ -36,6 +36,7 @@
   letter-spacing: 0.04em;
   font-size: 14px;
   margin-top: 4px;
+  color: var(--ink);
 }
 .link:hover .artist {
   color: var(--matcha);
@@ -53,6 +54,8 @@
   color: var(--stone);
   margin-top: 8px;
 }
+.bio::before { content: "\201C"; }
+.bio::after { content: "\201D"; }
 .counter {
   font-family: var(--font-grotesk), sans-serif;
   font-size: 12px;

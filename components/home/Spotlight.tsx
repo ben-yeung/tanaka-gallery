@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Spotlight.module.css";
 
 export interface SpotlightItem {
@@ -28,6 +28,21 @@ function fisherYates(n: number): number[] {
 
 const pad2 = (n: number) => String(n).padStart(2, "0");
 
+// Local reduced-motion hook: reads the live media query (SSR-safe, reactive),
+// avoiding framer-motion's module-level singleton so render and timing share one source.
+function usePrefersReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
+}
+
 export function Spotlight({
   items,
   shuffle = fisherYates,
@@ -35,7 +50,7 @@ export function Spotlight({
   items: SpotlightItem[];
   shuffle?: (n: number) => number[];
 }) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   // SSR + first client render use identity order so server/client markup match.
   const [order, setOrder] = useState<number[]>(() => items.map((_, i) => i));
   const [index, setIndex] = useState(0);
@@ -48,14 +63,8 @@ export function Spotlight({
   }, [items.length, shuffle]);
 
   // Auto-advance — disabled under reduced motion, while hovered, or with <2 items.
-  // Read matchMedia directly so the check reflects the live preference rather than
-  // framer-motion's module-level singleton (which is initialised once per module scope).
   useEffect(() => {
-    const prefersReduced =
-      typeof window !== "undefined" && window.matchMedia
-        ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        : reduce ?? false;
-    if (prefersReduced || paused || items.length <= 1) return;
+    if (reduce || paused || items.length <= 1) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % items.length);
     }, ADVANCE_MS);
@@ -96,7 +105,7 @@ export function Spotlight({
           <p className={styles.title}>{active.title}</p>
           <p className={styles.artist}>{active.artistName}</p>
           <p className={styles.meta}>{active.meta}</p>
-          <p className={styles.bio}>"{active.artistBio}"</p>
+          <p className={styles.bio}>{active.artistBio}</p>
         </div>
       </Link>
       <p className={styles.counter} aria-hidden="true">

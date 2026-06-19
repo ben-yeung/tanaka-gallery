@@ -87,5 +87,8 @@ describe("Spotlight", () => {
     render(<Spotlight items={items} shuffle={identity} />);
     act(() => { vi.advanceTimersByTime(5000); });
     expect(screen.getByText("Alpha")).toBeInTheDocument();
+    // Under reduced motion the static <img> branch renders (no AnimatePresence cross-fade).
+    const img = screen.getByRole("img");
+    expect(img).toHaveAttribute("src", "/works/a.svg");
   });
 });
