@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { isFreshLoad } from "./splash/splashGate";
+import { SNAKE_LEAD_MS } from "./splash/timing";
 import type { Work } from "@/data/types";
 import { formatMeta } from "@/data/works";
 import { setMorphOrigin } from "./lib/morphStore";
@@ -18,9 +20,15 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
   const units = useRef(new Map<string, HTMLElement>());
   const pathname = usePathname();
 
+  // Snapshot once: on a fresh document-load landing, the navbar + header lead,
+  // so the snake waits SNAKE_LEAD_MS before beginning. Client-nav and reduced
+  // motion are unaffected by the snapshot timing.
+  const [freshLanding] = useState(() => isFreshLoad());
+
   // Run the entrance once on mount.
   useEffect(() => {
     if (consumeGalleryReturn(pathname)) return; // returned from a detail morph on same grid → no re-entrance
+    const lead = freshLanding ? SNAKE_LEAD_MS : 0;
     const items: SnakeItem[] = [];
     units.current.forEach((el, key) => {
       const r = el.getBoundingClientRect();
@@ -34,7 +42,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
       if (reduce) {
         el.animate([{ opacity: 0 }, { opacity: 1 }], {
           duration: 600,
-          delay: step.index * 60,
+          delay: lead + step.index * 60,
           easing: "ease",
           fill: "backwards",
         });
@@ -45,7 +53,7 @@ export function WorkGrid({ works, dim = false }: { works: Work[]; dim?: boolean 
             { opacity: 0, filter: "blur(12px) brightness(1.25)", transform: `translateY(${dy}px)` },
             { opacity: 1, filter: "blur(0) brightness(1)", transform: "none" },
           ],
-          { duration: 1250, delay: step.index * 190, easing: ENTER_EASE, fill: "backwards" },
+          { duration: 1250, delay: lead + step.index * 190, easing: ENTER_EASE, fill: "backwards" },
         );
       }
     }

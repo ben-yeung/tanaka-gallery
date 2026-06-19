@@ -16,6 +16,12 @@ describe("Home", () => {
     const link = screen.getByRole("link", { name: /selected works/i });
     expect(link).toHaveAttribute("href", "/works");
   });
+  it("still renders the furigana readings (わ / さ) within the heading", () => {
+    render(<Home />);
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading).toHaveTextContent("わ");
+    expect(heading).toHaveTextContent("さ");
+  });
   it("spotlights a work that links to its detail page", () => {
     render(<Home />);
     const detailLink = screen
