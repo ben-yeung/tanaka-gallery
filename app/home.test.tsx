@@ -5,7 +5,11 @@ import Home from "./page";
 describe("Home", () => {
   it("shows the tagline", () => {
     render(<Home />);
-    expect(screen.getByText(/Art\. Objects\. San Francisco\./i)).toBeInTheDocument();
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading).toHaveTextContent(/Art\..*San Francisco\./);
+    // 侘び寂び (wabi-sabi) sits between Art. and San Francisco.
+    expect(heading).toHaveTextContent("侘");
+    expect(heading).toHaveTextContent("寂");
   });
   it("links to the works index", () => {
     render(<Home />);

@@ -7,7 +7,16 @@ export default function Home() {
   return (
     <>
       <section className={styles.hero}>
-        <h1 className={styles.tagline}>Art. Objects. San Francisco.</h1>
+        <h1 className={styles.tagline}>
+          Art.{" "}
+          <span className={styles.jp}>
+            <span className={styles.ruby}>侘<span className={styles.rt}>わ</span></span>び
+            <span className={styles.ruby}>寂<span className={styles.rt}>さ</span></span>び
+            <span className={styles.maru}>。</span>
+          </span>
+          <span className={styles.sf}>San Francisco.</span>
+        </h1>
+        <p className={styles.heroSub}>Made in Japan. Curated in SF.</p>
       </section>
       <section className={styles.index}>
         <p className={styles.note}>

@@ -5,7 +5,7 @@ import { Footer } from "@/components/ui/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Tanaka Projects", template: "%s — Tanaka Projects" },
+  title: { default: "Tanaka's Gallery", template: "%s — Tanaka's Gallery" },
   description: "Art. Objects. San Francisco.",
 };
 

@@ -8,6 +8,8 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./test/setup.ts"],
     globals: true,
+    // Keep tooling dirs (e.g. git worktrees under .claude) out of the run.
+    exclude: ["**/node_modules/**", "**/.claude/**", "**/.superpowers/**"],
   },
   resolve: {
     alias: { "@": fileURLToPath(new URL("./", import.meta.url)) },

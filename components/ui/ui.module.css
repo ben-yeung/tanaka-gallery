@@ -1,24 +1,42 @@
 .nav {
+  /* Fluid nav type: ~13px near 1440px, scaling to a 19px cap reached at 4K (3840px). */
+  --nav-fz: clamp(12px, calc(9.4px + 0.25vw), 19px);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   padding: 24px var(--gutter);
   border-bottom: 1px solid var(--stone);
 }
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.77em;
   font-family: var(--font-sans), sans-serif;
-  font-size: 13px;
+  font-size: var(--nav-fz);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
 }
-.navLinks { display: flex; gap: 28px; }
+.wordmarkLogo {
+  flex: none;
+  /* em-based so the mark scales with the nav font instead of staying fixed. */
+  width: 1.7em;
+  height: 1.7em;
+  /* logo strokes use currentColor, so this tints the mark with the accent. */
+  color: var(--matcha);
+}
+.navLinks {
+  display: flex;
+  gap: 28px;
+}
 .navLink {
   font-family: var(--font-grotesk), sans-serif;
-  font-size: 13px;
+  font-size: var(--nav-fz);
   letter-spacing: 0.04em;
 }
-.navLink:hover { color: var(--matcha); }
+.navLink:hover {
+  color: var(--matcha);
+}
 
 .footer {
   padding: 48px var(--gutter);
@@ -27,7 +45,26 @@
   justify-content: space-between;
   align-items: baseline;
 }
-.tagline { font-family: var(--font-serif), serif; font-style: italic; font-size: 16px; }
-.footerMeta { font-size: 12px; color: var(--stone); letter-spacing: 0.04em; }
+.tagline {
+  font-family: var(--font-serif), serif;
+  font-size: 16px;
+}
+.notice {
+  display: block;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+  margin-top: 8px;
+}
+.footerMeta {
+  font-size: 12px;
+  color: var(--stone);
+  letter-spacing: 0.04em;
+}
 
-.hairline { border: 0; border-top: 1px solid var(--stone); width: 100%; }
+.hairline {
+  border: 0;
+  border-top: 1px solid var(--stone);
+  width: 100%;
+}

@@ -2,8 +2,60 @@
   padding: clamp(64px, 16vh, 200px) var(--gutter);
   border-bottom: 1px solid var(--stone);
 }
-.tagline { font-size: clamp(40px, 9vw, 120px); line-height: 0.98; max-width: 14ch; }
-.index { padding: 40px var(--gutter) 96px; }
+.tagline {
+  font-size: clamp(20px, 6vw, 116px);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+/* Japanese run: shrink to optically match the Latin cap-height (CJK fills the em-box).
+   margin-left sets a deliberate gap after "Art."; margin-right after the period. */
+.jp {
+  font-size: 0.82em;
+  margin: 0 0.06em 0 0.04em;
+}
+/* Period (。) gets its own knob — it reads oversized, and its full-width box leaves a
+   big empty void on the right, so the negative margin pulls "San Francisco." back in. */
+.maru {
+  font-size: 0.7em;
+  margin-right: -0.34em;
+}
+/* "San Francisco." — inline on desktop, its own line on mobile (see media query). */
+.sf {
+  white-space: nowrap;
+}
+
+/* CSS furigana: the reading is absolutely positioned above the kanji so we get a real,
+   tunable gap (native <rt> ignores margin/transform). .ruby is the per-kanji anchor. */
+.ruby {
+  position: relative;
+  white-space: nowrap;
+}
+.rt {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  /* the bottom-margin knob: increase to push the reading further above the kanji. */
+  margin-bottom: 0.18em;
+  font-family: var(--font-grotesk), sans-serif;
+  font-weight: 500;
+  font-size: 0.46em;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+}
+
+.heroSub {
+  margin-top: clamp(18px, 2.4vh, 32px);
+  font-family: var(--font-grotesk), sans-serif;
+  letter-spacing: 0.04em;
+  font-size: clamp(16px, 2.4vw, 28px);
+  color: var(--stone);
+}
+.index {
+  padding: 40px var(--gutter) 96px;
+}
 .indexLink {
   display: inline-block;
   font-family: var(--font-grotesk), sans-serif;
@@ -12,5 +64,28 @@
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
 }
-.indexLink:hover { color: var(--matcha); }
-.note { font-family: var(--font-serif), serif; font-style: italic; color: var(--stone); margin-bottom: 28px; max-width: 40ch; }
+.indexLink:hover {
+  color: var(--matcha);
+}
+.note {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  color: var(--stone);
+  margin-bottom: 28px;
+  max-width: 40ch;
+}
+
+/* Mobile: the single-line headline shrinks too far, so break "San Francisco." onto
+   its own line and scale the type up to reclaim the vertical space. */
+@media (max-width: 600px) {
+  .hero {
+    text-align: center;
+  }
+  .tagline {
+    font-size: clamp(34px, 12vw, 56px);
+    line-height: 1.12;
+  }
+  .sf {
+    display: block;
+  }
+}
