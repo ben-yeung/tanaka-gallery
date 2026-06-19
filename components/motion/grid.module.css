@@ -12,3 +12,4 @@
 .sold { color: var(--stone); }
 .head { padding: 40px var(--gutter) 0; }
 .subhead { margin-top: 8px; color: var(--stone); }
+.morphWrap { display: block; }

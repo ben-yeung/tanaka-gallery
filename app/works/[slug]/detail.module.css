@@ -1,0 +1,27 @@
+.stage {
+  width: 100%;
+  height: clamp(60vh, 78vh, 88vh);
+  overflow: hidden;
+  background: var(--stone);
+}
+.info {
+  padding: 28px var(--gutter) 96px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+}
+.title { font-size: clamp(28px, 4vw, 48px); }
+.line { margin-top: 8px; }
+.price { font-family: var(--font-grotesk), sans-serif; font-size: 16px; letter-spacing: 0.03em; }
+.inquire {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--matcha);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.sold { color: var(--stone); }
