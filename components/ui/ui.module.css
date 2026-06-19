@@ -25,6 +25,13 @@
   /* logo strokes use currentColor, so this tints the mark with the accent. */
   color: var(--matcha);
 }
+/* Wordmark sits far left; this group is pushed far right by the nav's
+   space-between, keeping the color-mode toggle pinned to the edge. */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 .navLinks {
   display: flex;
   gap: 28px;
@@ -33,9 +40,33 @@
   font-family: var(--font-grotesk), sans-serif;
   font-size: var(--nav-fz);
   letter-spacing: 0.04em;
+  /* Keep hover snappy — overrides the global 400ms palette transition. */
+  transition: color 160ms ease;
 }
 .navLink:hover {
   color: var(--matcha);
+}
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9em;
+  height: 1.9em;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--stone);
+  cursor: pointer;
+  font-size: var(--nav-fz);
+  line-height: 0;
+  transition: color 160ms ease;
+}
+.themeToggle:hover {
+  color: var(--matcha);
+}
+.themeToggleIcon {
+  display: inline-flex;
+  font-size: 1.2em;
 }
 
 .footer {

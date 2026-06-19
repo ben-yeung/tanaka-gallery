@@ -17,7 +17,29 @@
   }
 }
 
+/* An explicit color-mode choice (set via the nav toggle, persisted in
+   localStorage, applied pre-paint) overrides the system preference above.
+   Higher specificity than :root, and placed last, so it wins either way. */
+:root[data-theme="light"] {
+  --paper: #f4f1ea;
+  --ink: #1a1a18;
+  --matcha: #7c8a6b;
+  --stone: #7e766a;
+}
+:root[data-theme="dark"] {
+  --paper: #1c1e1f;
+  --ink: #e8e6e0;
+  --matcha: #8c9b7a;
+  --stone: #5a5e60;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Ease the whole palette when the mode flips. Scoped to the color-bearing
+   properties so it never animates layout; reduced-motion users opt out below. */
+*, *::before, *::after {
+  transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease;
+}
 
 html { font-family: var(--font-sans), system-ui, sans-serif; }
 
