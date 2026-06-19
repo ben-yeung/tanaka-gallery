@@ -1,20 +1,30 @@
+/* The grid stretches .spotlight to the section's full height; the link is a column
+   that fills it, the frame grows to take all height above the caption, and the frame's
+   width follows its height at 4/3 — so the whole panel scales to fit the section.
+   (Work images are 1200x900 = 4/3, so the contained art fills the frame exactly.) */
 .spotlight {
-  /* Scaled-down panel: roughly half the previous full-column width. min-width:0 keeps
-     it shrinkable in its grid track. */
   min-width: 0;
-  width: clamp(220px, 22vw, 320px);
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 .link {
-  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
 /* Relative frame + absolutely-stacked images lets the outgoing/incoming slides
-   overlap during the cross-fade without the layout shifting. */
+   overlap during the slide/fade transition without the layout shifting. */
 .frame {
-  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
   aspect-ratio: 4 / 3;
+  /* Cap so a very tall section can't widen the panel enough to crush the text column. */
+  max-width: min(48vw, 560px);
+  position: relative;
   background: var(--paper);
   border: 1px solid var(--stone);
   overflow: hidden;
@@ -26,9 +36,10 @@
   height: 100%;
   object-fit: contain;
 }
-/* Single caption row: "title • artist" left-aligned, counter pinned to the right. */
+/* Single caption row: "title • artist" left-aligned, counter pinned to the right.
+   align-self: stretch makes it span the frame's width so the counter sits at its edge. */
 .caption {
-  margin-top: 12px;
+  align-self: stretch;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -57,7 +68,8 @@
   font-family: var(--font-grotesk), sans-serif;
   letter-spacing: 0.04em;
   font-size: 13px;
-  color: var(--stone);
+  /* Accent (matcha) so the artist name stands out from the inked title. */
+  color: var(--matcha);
 }
 .counter {
   flex-shrink: 0;
@@ -68,10 +80,18 @@
   color: var(--stone);
 }
 
-/* Mobile: the spotlight stacks below the text (see home.module.css) and reclaims
-   full width rather than staying a narrow panel. */
+/* Mobile: the spotlight stacks below the text and reclaims full width; the frame
+   reverts to a width-driven 4/3 box (the section-height stretch no longer applies). */
 @media (max-width: 600px) {
   .spotlight {
     width: 100%;
+  }
+  .link {
+    flex: none;
+    align-items: stretch;
+  }
+  .frame {
+    flex: none;
+    max-width: none;
   }
 }

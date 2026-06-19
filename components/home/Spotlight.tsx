@@ -88,14 +88,16 @@ export function Spotlight({
             <img src={active.image} alt={active.title} className={styles.img} />
           ) : (
             <AnimatePresence initial={false}>
+              {/* Slide right-to-left: the new work enters from the right and the old
+                  exits to the left, with a fade. The frame clips the off-frame slides. */}
               <motion.img
                 key={active.slug}
                 src={active.image}
                 alt={active.title}
                 className={styles.img}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, x: "100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "-100%" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
             </AnimatePresence>
