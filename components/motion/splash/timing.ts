@@ -19,6 +19,21 @@ export const RISE_Y = 28; // px — text rise (calmer than the grid's 80px tiles
 export const BLUR = 8; // px — soft blur
 export const FURIGANA_DELAY = 0.2; // furigana settles this long after its kanji
 
+// Hero subheader typewriter ("Made in Japan. Curated in SF.").
+export const TYPE_CHAR = 0.04; // seconds between glyphs (typing cadence)
+export const TYPE_CHAR_DUR = 0.08; // each glyph's fade — slightly overlaps the next
+export const TYPE_SENTENCE_GAP = 0.28; // extra pause before each sentence after the first
+
+// When the Typewriter finishes (last glyph fully faded), given the same `sentences`
+// and `delay` it's rendered with. Every visible character — including the spaces in
+// `join(" ")` — is one TYPE_CHAR step; each sentence after the first adds a gap. Lets
+// downstream content wait for the typed line instead of guessing a beat.
+export const typewriterEnd = (sentences: string[], delay = 0): number =>
+  delay +
+  sentences.join(" ").length * TYPE_CHAR +
+  Math.max(0, sentences.length - 1) * TYPE_SENTENCE_GAP +
+  TYPE_CHAR_DUR;
+
 // Reduced motion (opacity-only).
 export const REDUCED_DUR = 0.45;
 export const REDUCED_STAGGER = 0.06;
