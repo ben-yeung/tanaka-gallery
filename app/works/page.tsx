@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { allWorks } from "@/data/works";
+import { GalleryView } from "@/components/motion/GalleryView";
 import { WorkGrid } from "@/components/motion/WorkGrid";
 import styles from "@/components/motion/grid.module.css";
 
@@ -12,7 +14,9 @@ export default function WorksPage() {
         <h1>Works</h1>
         <p className={`subhead ${styles.subhead}`}>The complete index</p>
       </header>
-      <WorkGrid works={allWorks()} />
+      <Suspense fallback={<WorkGrid works={allWorks()} />}>
+        <GalleryView works={allWorks()} />
+      </Suspense>
     </>
   );
 }
