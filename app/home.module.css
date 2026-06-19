@@ -39,16 +39,20 @@
 }
 .rt {
   position: absolute;
+  /* Horizontal knob: anchor point on the kanji. Self-centering (translateX(-50%)) is
+     applied by the Framer furigana variant's `x`, NOT here — Framer owns `transform`
+     to run the Y settle, so a CSS transform on .rt would be overridden. Nudge this
+     `left` to fine-tune: lower % = shift the reading left. */
   left: 50%;
   bottom: 100%;
-  transform: translateX(-50%);
   /* the bottom-margin knob: increase to push the reading further above the kanji. */
   margin-bottom: 0.18em;
   font-family: var(--font-grotesk), sans-serif;
   font-weight: 500;
   font-size: 0.46em;
   line-height: 1;
-  letter-spacing: 0.04em;
+  /* No letter-spacing: each reading is a single hiragana, so trailing track would
+     only widen the box on the right and pull the centered glyph left of the kanji. */
   color: var(--stone);
 }
 

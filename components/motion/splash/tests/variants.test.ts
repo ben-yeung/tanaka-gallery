@@ -35,6 +35,11 @@ describe("splash variants — full motion", () => {
     expect(v.hidden).not.toHaveProperty("filter");
     expect(v.visible).toMatchObject({ opacity: 1, y: 0 });
   });
+  it("furigana self-centers over its kanji via x (CSS transform would be overridden by the Y settle)", () => {
+    const v = furiganaVariants(false);
+    expect(v.hidden).toMatchObject({ x: "-50%" });
+    expect(v.visible).toMatchObject({ x: "-50%" });
+  });
   it("applies a per-element delay to the visible transition", () => {
     const v = itemVariants(false, 0.9);
     expect((v.visible as { transition: { delay: number } }).transition.delay).toBe(0.9);
@@ -52,8 +57,9 @@ describe("splash variants — reduced motion (opacity-only)", () => {
     expect(inlineVariants(true).visible).not.toHaveProperty("y");
     expect(inlineVariants(true).visible).not.toHaveProperty("filter");
   });
-  it("furigana is opacity-only (no settle Y)", () => {
-    expect(furiganaVariants(true).hidden).toEqual({ opacity: 0 });
+  it("furigana is opacity-only (no settle Y) but still self-centers via x", () => {
+    expect(furiganaVariants(true).hidden).toEqual({ opacity: 0, x: "-50%" });
     expect(furiganaVariants(true).visible).not.toHaveProperty("y");
+    expect(furiganaVariants(true).visible).toMatchObject({ x: "-50%" });
   });
 });
