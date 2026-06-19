@@ -16,4 +16,11 @@ describe("Home", () => {
     const link = screen.getByRole("link", { name: /selected works/i });
     expect(link).toHaveAttribute("href", "/works");
   });
+  it("spotlights a work that links to its detail page", () => {
+    render(<Home />);
+    const detailLink = screen
+      .getAllByRole("link")
+      .find((a) => /^\/works\/.+/.test(a.getAttribute("href") ?? ""));
+    expect(detailLink).toBeDefined();
+  });
 });

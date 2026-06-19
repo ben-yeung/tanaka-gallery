@@ -13,6 +13,7 @@
 .jp {
   font-size: 0.82em;
   margin: 0 0.06em 0 0.04em;
+  color: var(--matcha);
 }
 /* Period (。) gets its own knob — it reads oversized, and its full-width box leaves a
    big empty void on the right, so the negative margin pulls "San Francisco." back in. */
@@ -54,25 +55,59 @@
   color: var(--stone);
 }
 .index {
+  /* Grow to fill the height <main> inherits from the viewport, so the slack that
+     would otherwise sit below the footer is given to the Selected Works section. */
+  flex: 1;
   padding: 40px var(--gutter) 96px;
+  /* Two equal columns: text/link on the left, the spotlight grid on the right taking
+     ~half the section width (it fits 1–3 cards into that half based on what fits). */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.indexText {
+  /* min-width:0 lets the grid track shrink below the text's intrinsic width
+     instead of overflowing at narrow (tablet) viewports. */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .indexLink {
   display: inline-block;
   font-family: var(--font-grotesk), sans-serif;
   font-size: 14px;
   letter-spacing: 0.04em;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
 }
 .indexLink:hover {
   color: var(--matcha);
 }
 .note {
-  font-family: var(--font-serif), serif;
-  font-style: italic;
-  color: var(--stone);
   margin-bottom: 28px;
   max-width: 40ch;
+}
+/* Header line: smaller than the hero, but set in the heading serif and inked so it
+   reads as a section title above the muted subline. */
+.noteHead {
+  display: inline-block;
+  font-family: var(--font-serif), serif;
+  color: var(--ink);
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.1;
+  /* Accent underline (sized to the text, not the full block) instead of tinting the type.
+     padding clears the descenders (p, j, y) so the line sits below them, not through them. */
+  border-bottom: 2px solid var(--matcha);
+  padding-bottom: 0.025em;
+}
+/* Subline: the original muted italic, a step down from the header. */
+.noteSub {
+  display: block;
+  font-family: var(--font-grotesk), sans-serif;
+  font-style: italic;
+  color: var(--stone);
+  font-size: clamp(15px, 1.4vw, 20px);
+  margin-top: 10px;
 }
 
 /* Mobile: the single-line headline shrinks too far, so break "San Francisco." onto
@@ -87,5 +122,8 @@
   }
   .sf {
     display: block;
+  }
+  .index {
+    grid-template-columns: 1fr;
   }
 }

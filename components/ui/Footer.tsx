@@ -66,7 +66,7 @@ export function Footer() {
         </span>
       </div>
       <div className={styles.footerRight}>
-        <span className={styles.footerMeta}>TANAKA'S GALLERY · est. 2001</span>
+        <span className={styles.footerMeta}>TANAKA&apos;S GALLERY · est. 2001</span>
         <div className={styles.socials}>
           {socials.map((s) => (
             <a key={s.label} href={s.href} className={styles.social} aria-label={s.label}>
