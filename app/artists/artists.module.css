@@ -1,0 +1,14 @@
+.index { padding: 40px var(--gutter) 96px; }
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--stone);
+}
+.row:hover .name { color: var(--matcha); }
+.name { font-family: var(--font-serif), serif; font-size: clamp(22px, 3vw, 34px); }
+.origin { font-size: 12px; color: var(--stone); letter-spacing: 0.04em; }
+.head { padding: 40px var(--gutter) 0; }
+.bio { padding: 28px var(--gutter); font-family: var(--font-serif), serif; font-size: clamp(20px, 3vw, 30px); max-width: 26ch; }
+.detailMeta { padding: 0 var(--gutter); color: var(--stone); }
