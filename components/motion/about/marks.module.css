@@ -25,3 +25,12 @@
 .text {
   position: relative;
 }
+/* Dark mode: bump the wash opacity — the lighter dark-mode matcha needs more presence. */
+@media (prefers-color-scheme: dark) {
+  .wash {
+    background: rgb(var(--matcha-rgb) / 0.36);
+  }
+}
+:global([data-theme="dark"]) .wash {
+  background: rgb(var(--matcha-rgb) / 0.36);
+}
