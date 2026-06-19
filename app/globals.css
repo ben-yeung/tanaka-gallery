@@ -27,6 +27,17 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  /* Column layout pins the footer to the viewport bottom and lets <main> grow to
+     absorb any leftover height (no dead space below the footer on short pages). */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  /* Pass the grown height down so a page's flex children can claim the slack. */
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3 { font-family: var(--font-serif), Georgia, serif; font-weight: 400; line-height: 1.05; }

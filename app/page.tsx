@@ -10,9 +10,14 @@ export default function Home() {
         <h1 className={styles.tagline}>
           Art.{" "}
           <span className={styles.jp}>
-            <span className={styles.ruby}>侘<span className={styles.rt}>わ</span></span>び
-            <span className={styles.ruby}>寂<span className={styles.rt}>さ</span></span>び
-            <span className={styles.maru}>。</span>
+            <span className={styles.ruby}>
+              侘<span className={styles.rt}>わ</span>
+            </span>
+            び
+            <span className={styles.ruby}>
+              寂<span className={styles.rt}>さ</span>
+            </span>
+            び<span className={styles.maru}>。</span>
           </span>
           <span className={styles.sf}>San Francisco.</span>
         </h1>
@@ -20,10 +25,11 @@ export default function Home() {
       </section>
       <section className={styles.index}>
         <p className={styles.note}>
-          Contemporary art and objects. Twenty artists, half Japanese, half Bay Area.
+          <span className={styles.noteHead}>Contemporary art projects.</span>
+          <span className={styles.noteSub}>Timeless artists, from Tokyo to the Bay.</span>
         </p>
         <Link href="/works" className={styles.indexLink}>
-          Selected Works ({count}) →
+          View ({count}) Selected Works →
         </Link>
       </section>
     </>
