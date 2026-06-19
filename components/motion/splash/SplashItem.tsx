@@ -5,7 +5,7 @@ import { useState } from "react";
 import { isFreshLoad } from "./splashGate";
 import { itemVariants, inlineVariants, furiganaVariants } from "./variants";
 
-type Tag = "div" | "span" | "p" | "li" | "section" | "header" | "h1";
+type Tag = "div" | "span" | "p" | "li" | "section" | "header" | "h1" | "h2";
 
 type SplashItemProps = {
   // Optional so purely decorative elements (e.g. a divider) can self-close.

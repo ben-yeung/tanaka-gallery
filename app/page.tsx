@@ -9,6 +9,15 @@ import styles from "./home.module.css";
 
 const SUBHEAD = ["Made in Japan.", "Curated in SF."];
 
+// About narrative (after the lead). Plain strings — apostrophes don't need escaping
+// inside JS, only in JSX text.
+const ABOUT_BODY = [
+  "He spent his twenties absorbing San Francisco: the Japantown shops, the Mission murals, and the quiet rigor of Japanese artists he discovered in the back rooms of galleries that no longer exist.",
+  "He started buying work before he could afford to, falling in love with pieces by obscure artists trying to make a living.",
+  "Tanaka's Gallery debuted in 2001 in a small San Francisco storefront that still smelled like the flower shop it once was.",
+  "Tanaka's curation brought together artists who reached the same conclusion from different directions: that less, done carefully, is enough.",
+];
+
 export default function Home() {
   const works = allWorks();
   const count = works.length;
@@ -87,37 +96,31 @@ export default function Home() {
           <Link href="/works" className={styles.indexLink}>
             View ({count}) Selected Works →
           </Link>
-        </div>
-        <Spotlight items={items} />
-      </SplashItem>
-      <section id="about" className={styles.about}>
-        <h2 className={styles.aboutHead}>About</h2>
-        <p className={styles.aboutLead}>
-          Ren Tanaka left Osaka at nineteen with a duffel bag and an admission
-          letter from SFAI he wasn&apos;t sure he deserved.
-        </p>
-        <p className={styles.aboutBody}>
-          He spent his twenties absorbing San Francisco: the Japantown shops,
-          the Mission murals, and the quiet rigor of Japanese artists he
-          discovered in the back rooms of galleries that no longer exist.
-        </p>
-        <p className={styles.aboutBody}>
-          He started buying work before he could afford to, falling in love with
-          pieces by obscure artists trying to make a living.
-        </p>
-        <p className={styles.aboutBody}>
-          Tanaka&apos;s Gallery debuted in 2001 in a small San Francisco
-          storefront that still smelled like the flower shop it once was.
-        </p>
-        <p className={styles.aboutBody}>
-          Tanaka&apos;s curation brought together artists who reached the same
-          conclusion from different directions: that less, done carefully, is
-          enough.
-        </p>
         </SplashItem>
         <SplashItem as="div" delay={worksBeat(2)} className={styles.spotlightWrap}>
           <Spotlight items={items} />
         </SplashItem>
+      </section>
+      {/* About continues the page cadence after the works grid, each block rising in
+          on its own beat like the rest of the homepage. */}
+      <section id="about" className={styles.about}>
+        <SplashItem as="h2" delay={worksBeat(3)} className={styles.aboutHead}>
+          About
+        </SplashItem>
+        <SplashItem as="p" delay={worksBeat(4)} className={styles.aboutLead}>
+          Ren Tanaka left Osaka at nineteen with a duffel bag and an admission
+          letter from SFAI he wasn&apos;t sure he deserved.
+        </SplashItem>
+        {ABOUT_BODY.map((para, i) => (
+          <SplashItem
+            key={i}
+            as="p"
+            delay={worksBeat(5 + i)}
+            className={styles.aboutBody}
+          >
+            {para}
+          </SplashItem>
+        ))}
       </section>
     </>
   );
