@@ -4,6 +4,7 @@ import { getArtist } from "@/data/artists";
 import { Spotlight, type SpotlightItem } from "@/components/home/Spotlight";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
 import { Typewriter } from "@/components/motion/splash/Typewriter";
+import { ScrollReveal, ScrollRevealItem } from "@/components/motion/ScrollReveal";
 import { beat, ITEM_STAGGER, typewriterEnd } from "@/components/motion/splash/timing";
 import styles from "./home.module.css";
 
@@ -101,27 +102,23 @@ export default function Home() {
           <Spotlight items={items} />
         </SplashItem>
       </section>
-      {/* About continues the page cadence after the works grid, each block rising in
-          on its own beat like the rest of the homepage. */}
-      <section id="about" className={styles.about}>
-        <SplashItem as="h2" delay={worksBeat(3)} className={styles.aboutHead}>
+      {/* About sits below the fold, so it reveals on scroll-into-view (or immediately
+          when the page loads already showing it, e.g. /#about) rather than on the load
+          timer. Same rise-in look as the rest of the homepage, staggered as it enters. */}
+      <ScrollReveal as="section" id="about" className={styles.about}>
+        <ScrollRevealItem as="h2" className={styles.aboutHead}>
           About
-        </SplashItem>
-        <SplashItem as="p" delay={worksBeat(4)} className={styles.aboutLead}>
+        </ScrollRevealItem>
+        <ScrollRevealItem as="p" className={styles.aboutLead}>
           Ren Tanaka left Osaka at nineteen with a duffel bag and an admission
           letter from SFAI he wasn&apos;t sure he deserved.
-        </SplashItem>
+        </ScrollRevealItem>
         {ABOUT_BODY.map((para, i) => (
-          <SplashItem
-            key={i}
-            as="p"
-            delay={worksBeat(5 + i)}
-            className={styles.aboutBody}
-          >
+          <ScrollRevealItem key={i} as="p" className={styles.aboutBody}>
             {para}
-          </SplashItem>
+          </ScrollRevealItem>
         ))}
-      </section>
+      </ScrollReveal>
     </>
   );
 }
