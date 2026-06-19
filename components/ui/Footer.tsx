@@ -1,3 +1,4 @@
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./ui.module.css";
 
 const socials = [
@@ -80,6 +81,7 @@ export function Footer() {
               </svg>
             </a>
           ))}
+          <ThemeToggle className={styles.themeToggleFooter} />
         </div>
       </div>
     </footer>

@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { ThemeToggle } from "./ThemeToggle";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
 import { endFreshLoad } from "@/components/motion/splash/splashGate";
 import { WORDMARK_DELAY, LINK_DELAY, LINK_STAGGER } from "@/components/motion/splash/timing";
@@ -27,26 +26,21 @@ export function Nav() {
           Tanaka&apos;s Gallery
         </SplashItem>
       </Link>
-      <div className={styles.navRight}>
-        <div className={styles.navLinks}>
-          <SplashItem as="span" variant="inline" delay={LINK_DELAY}>
-            <Link href="/works" className={styles.navLink}>
-              Works
-            </Link>
-          </SplashItem>
-          <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER}>
-            <Link href="/#about" className={styles.navLink}>
-              About
-            </Link>
-          </SplashItem>
-          <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER * 2}>
-            <Link href="/artists" className={styles.navLink}>
-              Artists
-            </Link>
-          </SplashItem>
-        </div>
-        <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER * 3}>
-          <ThemeToggle />
+      <div className={styles.navLinks}>
+        <SplashItem as="span" variant="inline" delay={LINK_DELAY}>
+          <Link href="/works" className={styles.navLink}>
+            Works
+          </Link>
+        </SplashItem>
+        <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER}>
+          <Link href="/#about" className={styles.navLink}>
+            About
+          </Link>
+        </SplashItem>
+        <SplashItem as="span" variant="inline" delay={LINK_DELAY + LINK_STAGGER * 2}>
+          <Link href="/artists" className={styles.navLink}>
+            Artists
+          </Link>
         </SplashItem>
       </div>
     </nav>
