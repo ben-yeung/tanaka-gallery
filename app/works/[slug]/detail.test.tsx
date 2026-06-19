@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import WorkDetail from "./page";
 import styles from "./detail.module.css";
 
-// notFound throws a Next control-flow error; assert it is hit for a bad slug.
 vi.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_NOT_FOUND");
