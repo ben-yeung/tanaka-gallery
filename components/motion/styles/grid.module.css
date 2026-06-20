@@ -14,6 +14,9 @@
   overflow: hidden;
   background: var(--stone);
   border-radius: 2px;
+  transition:
+    filter 300ms ease,
+    opacity 300ms ease;
 }
 .frame img {
   width: 100%;
@@ -22,6 +25,7 @@
 }
 .caption {
   margin-top: 10px;
+  transition: opacity 300ms ease;
 }
 .label {
   min-width: 0;
@@ -90,9 +94,6 @@
 .dimmed .frame {
   filter: brightness(0.5);
   opacity: 0.55;
-  transition:
-    filter 300ms ease,
-    opacity 300ms ease;
 }
 .dimmed .caption {
   opacity: 0.55;
