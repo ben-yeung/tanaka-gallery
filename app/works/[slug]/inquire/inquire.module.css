@@ -48,9 +48,12 @@
 }
 
 /* Float note to the right of the payment column.
-   Only activates at 1440px+ where the right margin (≥200px) is
-   guaranteed to contain the note width + gap without overflowing. */
+   Shift the entire wrap LEFT by (note-width + gap) / 2 so the combined
+   visual footprint of grid + note is centered in the viewport, not just the grid. */
 @media (min-width: 1440px) {
+  .wrap {
+    transform: translateX(calc(-1 * (max(150px, 9vw) + max(20px, 1.6vw)) / 2));
+  }
   .floatingNote {
     position: absolute;
     left: calc(100% + max(20px, 1.6vw));
