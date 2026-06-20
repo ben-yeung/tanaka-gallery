@@ -59,12 +59,17 @@ export default function Home() {
               Timeless artists, from Tokyo to the Bay.
             </span>
           </p>
-          <Link href="/works" className={styles.indexLink}>
+          <Link href="/works" className={`${styles.indexLink} ${styles.indexLinkDesktop}`}>
             View ({count}) Selected Works →
           </Link>
         </SplashItem>
         <SplashItem as="div" delay={worksBeat(2)} className={styles.spotlightWrap}>
           <Spotlight items={items} />
+        </SplashItem>
+        <SplashItem as="div" delay={worksBeat(1)} className={styles.indexLinkMobile}>
+          <Link href="/works" className={styles.indexLink}>
+            View ({count}) Selected Works →
+          </Link>
         </SplashItem>
       </section>
       {/* About sits below the fold: a single useInView trigger (latched once) reveals

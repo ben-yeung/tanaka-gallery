@@ -47,7 +47,13 @@
   transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease;
 }
 
-html { font-family: var(--font-sans), system-ui, sans-serif; scroll-behavior: smooth; }
+html {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  scroll-behavior: smooth;
+  /* Prevent any element from creating a horizontal scrollbar. Applied to html (not
+     just body) so iOS Safari honours it — body-only overflow:hidden is ignored there. */
+  overflow-x: hidden;
+}
 
 body {
   background: var(--paper);

@@ -1,5 +1,9 @@
 .spotlight {
   min-width: 0;
+  /* Establishes a containing block so popLayout's absolute-positioned exiting cards
+     stay clipped within the component instead of escaping to the body. */
+  position: relative;
+  overflow: hidden;
 }
 /* Responsive grid: the column count (1–3) is set inline from JS based on how many
    cards fit the measured width. Keep `gap` in sync with GAP in Spotlight.tsx.
