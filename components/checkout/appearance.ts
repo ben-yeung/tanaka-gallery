@@ -4,6 +4,10 @@ import type { Appearance } from "@stripe/stripe-js";
 export function buildAppearance(): Appearance {
   const s = getComputedStyle(document.documentElement);
   const v = (name: string) => s.getPropertyValue(name).trim();
+  // Scale Stripe's internal font proportionally with viewport — the element is
+  // an iframe so it ignores our CSS vw/vh values; must be computed here.
+  // Match site's meta scale: max(13px, 0.75vw)
+  const fontSizeBase = `${Math.max(13, window.innerWidth * 0.0075)}px`;
   return {
     theme: "stripe",
     variables: {
@@ -12,6 +16,7 @@ export function buildAppearance(): Appearance {
       colorPrimary: v("--matcha"),
       fontFamily: "Inter, system-ui, sans-serif",
       borderRadius: "2px",
+      fontSizeBase,
     },
   };
 }

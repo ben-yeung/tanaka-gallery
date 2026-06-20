@@ -30,23 +30,24 @@ export default async function Inquire({ params }: Params) {
           <hr className={styles.rule} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={work.image} alt={work.title} className={styles.thumb} />
-          <h1 className={styles.workTitle}>{work.title}</h1>
+          <div className={styles.titleRow}>
+            <h1 className={styles.workTitle}>{work.title}</h1>
+            <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
+          </div>
           <p className={`meta ${styles.workMeta}`}>
             <span className={styles.artistName}>{artist?.name ?? "Unknown"}</span>
             {` · ${work.year} · ${work.medium}`}
           </p>
-          <p className={`meta ${styles.workMeta}`}>{work.dimensions}</p>
-          <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
+          <div className={styles.noteWrap}>
+            <TestCardNote />
+          </div>
         </div>
 
-        {/* Right: payment — note floats absolutely outside this column on wide viewports */}
-        <div className={styles.paymentCol}>
+        {/* Right: payment form */}
+        <div>
           <p className={`meta ${styles.sectionLabel}`}>Payment</p>
           <hr className={styles.rule} />
           <CheckoutPanel slug={work.slug} />
-          <div className={styles.floatingNote}>
-            <TestCardNote />
-          </div>
         </div>
       </div>
     </section>

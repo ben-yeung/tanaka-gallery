@@ -64,7 +64,11 @@ export function CheckoutPanel({ slug }: { slug: string }) {
   }, [slug]);
 
   if (error) return <p className="meta" role="alert">{error}</p>;
-  if (!clientSecret) return <p className="meta">Preparing checkout…</p>;
+  if (!clientSecret) return (
+    <div style={{ minHeight: "max(200px, 16vw)" }}>
+      <p className="meta" style={{ color: "var(--stone)" }}>Preparing checkout…</p>
+    </div>
+  );
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret, appearance: buildAppearance() }}>

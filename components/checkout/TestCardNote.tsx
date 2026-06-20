@@ -11,52 +11,68 @@ export function TestCardNote() {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+    <div
+      style={{
+        border: "1px solid var(--stone)",
+        borderRadius: 3,
+        padding: "max(12px, 1.2vw)",
+        background: "rgba(var(--matcha-rgb), 0.05)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "max(8px, 0.7vw)",
+      }}
+    >
       <p
         className="meta"
         style={{
           color: "var(--stone)",
-          letterSpacing: "0.07em",
           textTransform: "uppercase",
-          fontSize: "max(9px, 0.6vw)",
-          marginBottom: 6,
+          letterSpacing: "0.08em",
+          fontSize: "max(10px, 0.65vw)",
+          marginBottom: 2,
         }}
       >
         Test mode
       </p>
 
-      <p className="meta" style={{ color: "var(--stone)" }}>Card number</p>
-      <button
-        onClick={copy}
-        className="meta"
-        style={{
-          display: "block",
-          textAlign: "left",
-          color: "var(--ink)",
-          background: "none",
-          border: "none",
-          padding: 0,
-          cursor: "pointer",
-          textDecoration: "underline",
-          textUnderlineOffset: 3,
-          fontFamily: "inherit",
-          fontSize: "inherit",
-          letterSpacing: "0.06em",
-        }}
-      >
-        4242 4242 4242 4242
-      </button>
-      <p className="meta" style={{ color: "var(--stone)", fontSize: "0.85em" }}>
-        {copied ? "Copied!" : "tap to copy"}
-      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "max(5px, 0.5vw)" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "max(8px, 0.8vw)" }}>
+          <span className="meta" style={{ color: "var(--matcha)", minWidth: "max(40px, 3.5vw)" }}>Card</span>
+          <button
+            onClick={copy}
+            className="meta"
+            style={{
+              color: "var(--ink)",
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              textDecoration: "underline",
+              textUnderlineOffset: 3,
+              fontFamily: "inherit",
+              fontSize: "inherit",
+              letterSpacing: "0.04em",
+            }}
+          >
+            4242 4242 4242 4242
+          </button>
+          <span className="meta" style={{ color: "var(--stone)" }}>
+            {copied ? "· Copied!" : "· tap to copy"}
+          </span>
+        </div>
 
-      <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>Expiry</p>
-      <p className="meta" style={{ color: "var(--ink)" }}>Any future date</p>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "max(8px, 0.8vw)" }}>
+          <span className="meta" style={{ color: "var(--matcha)", minWidth: "max(40px, 3.5vw)" }}>Expiry</span>
+          <span className="meta" style={{ color: "var(--ink)" }}>Any future date</span>
+        </div>
 
-      <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>CVC</p>
-      <p className="meta" style={{ color: "var(--ink)" }}>Any 3 digits</p>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "max(8px, 0.8vw)" }}>
+          <span className="meta" style={{ color: "var(--matcha)", minWidth: "max(40px, 3.5vw)" }}>CVC</span>
+          <span className="meta" style={{ color: "var(--ink)" }}>Any 3 digits</span>
+        </div>
+      </div>
 
-      <p className="meta" style={{ color: "var(--stone)", marginTop: 12 }}>
+      <p className="meta" style={{ color: "var(--stone)", marginTop: 2 }}>
         No real payment taken.
       </p>
     </div>

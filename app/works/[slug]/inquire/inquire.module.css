@@ -1,5 +1,3 @@
-/* Centered column, same feel as original 1040px cap but scales at 2K/4K.
-   60vw keeps proportional margin for the floating note at all resolutions. */
 .wrap {
   padding: max(40px, 5vh) var(--gutter);
   max-width: max(1040px, 60vw);
@@ -17,55 +15,42 @@
   align-items: start;
 }
 
+/* Consistent with nav (0.74vw) and meta (0.75vw) scaling band */
 .sectionLabel {
   color: var(--stone);
-  font-size: max(9px, 0.62vw);
+  font-size: max(10px, 0.65vw);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: max(10px, 1vh);
 }
 .rule { border: none; border-top: 1px solid var(--stone); opacity: 0.3; margin: 0 0 max(12px, 1.4vh); }
 
-/* vh-constrained so the whole page stays within one viewport */
 .thumb {
   width: 100%;
-  height: max(120px, 20vh);
+  height: max(200px, 32vh);
   object-fit: cover;
   display: block;
   background: var(--stone);
 }
 
-.workTitle { font-size: max(14px, 1vw); margin-top: max(10px, 1.2vh); }
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: max(12px, 1.2vw);
+  margin-top: max(10px, 1.2vh);
+}
+.workTitle { font-size: max(15px, 0.95vw); }
+.workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(14px, 0.8vw); flex-shrink: 0; }
 .workMeta { color: var(--stone); margin-top: max(3px, 0.4vh); }
 .artistName { color: var(--matcha); font-weight: 600; }
-.workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(13px, 0.82vw); margin-top: max(8px, 0.9vh); }
 
-.paymentCol { position: relative; }
-.floatingNote { margin-top: max(12px, 1.4vh); }
+.noteWrap { margin-top: max(14px, 1.6vh); opacity: 0.85; }
 
 @media (min-width: 680px) {
   .grid { grid-template-columns: 1fr 1fr; gap: max(48px, 5vw); }
 }
 
-/* Float note to the right of the payment column.
-   Shift the entire wrap LEFT by (note-width + gap) / 2 so the combined
-   visual footprint of grid + note is centered in the viewport, not just the grid. */
-@media (min-width: 1440px) {
-  .wrap {
-    transform: translateX(calc(-1 * (max(150px, 9vw) + max(20px, 1.6vw)) / 2));
-  }
-  .floatingNote {
-    position: absolute;
-    left: calc(100% + max(20px, 1.6vw));
-    top: calc(max(9px, 0.62vw) + max(10px, 1vh) + 1px + max(12px, 1.4vh));
-    width: max(150px, 9vw);
-    margin-top: 0;
-    border-left: 1px solid var(--stone);
-    padding-left: max(14px, 1vw);
-    opacity: 0.55;
-  }
-}
-
 @media (max-width: 679px) {
-  .thumb { height: max(120px, 25vw); }
+  .thumb { height: max(180px, 28vw); }
 }
