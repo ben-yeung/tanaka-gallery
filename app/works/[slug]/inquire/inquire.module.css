@@ -1,4 +1,4 @@
-.wrap { padding: 56px var(--gutter); max-width: 1040px; margin: 0 auto; }
+.wrap { padding: 56px var(--gutter); }
 
 .grid {
   display: grid;
@@ -14,27 +14,26 @@
 .artistName { color: var(--matcha); font-weight: 600; }
 .workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(18px, 0.95vw); margin-top: 14px; }
 
-/* payment column: relative anchor for the floating note */
 .paymentCol { position: relative; }
 
 /* default: note sits inline below the form */
 .floatingNote { margin-top: 20px; }
 
 @media (min-width: 680px) {
-  .grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+  .grid { grid-template-columns: 1fr 1fr; gap: max(48px, 5vw); }
   .thumb { aspect-ratio: 4 / 5; }
 }
 
-/* on wide viewports: lift the note out of flow, float it to the right */
+/* float note absolutely to the right of the payment column */
 @media (min-width: 1200px) {
   .floatingNote {
     position: absolute;
-    left: calc(100% + 32px);
-    top: 54px; /* aligns with the payment form, below label + rule */
-    width: 180px;
+    left: calc(100% + max(24px, 2vw));
+    top: 54px;
+    width: max(200px, 14vw);
     margin-top: 0;
     border-left: 1px solid var(--stone);
-    padding-left: 16px;
+    padding-left: max(16px, 1.2vw);
     opacity: 0.55;
   }
 }
