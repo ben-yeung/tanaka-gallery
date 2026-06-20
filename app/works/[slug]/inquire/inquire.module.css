@@ -1,4 +1,13 @@
-.wrap { padding: 56px var(--gutter); max-width: max(520px, 27vw); margin: 0 auto; }
-.title { font-size: max(26px, 2.1vw); }
-.line { margin: 8px 0 8px; }
-.price { font-family: var(--font-grotesk), sans-serif; font-size: max(18px, 0.95vw); margin-bottom: 28px; }
+.wrap { padding: 56px var(--gutter); max-width: 1040px; margin: 0 auto; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.sectionLabel { color: var(--stone); font-size: max(10px, 0.68vw); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; }
+.rule { border: none; border-top: 1px solid var(--stone); opacity: 0.3; margin: 0 0 24px; }
+.thumb { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; background: var(--stone); }
+.workTitle { font-size: max(20px, 1.4vw); margin-top: 20px; }
+.workMeta { color: var(--stone); margin-top: 6px; }
+.workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(18px, 0.95vw); margin-top: 14px; }
+
+@media (max-width: 680px) {
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+  .thumb { aspect-ratio: 4 / 3; max-height: 260px; }
+}
