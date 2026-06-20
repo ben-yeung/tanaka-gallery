@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getWork } from "@/data/works";
 import { getArtist } from "@/data/artists";
-import { formatPrice } from "@/data/format";
 import { LightboxStage } from "@/components/motion/LightboxStage";
+import { WorkAvailability } from "@/components/checkout/WorkAvailability";
 import styles from "./detail.module.css";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -37,16 +37,7 @@ export default async function WorkDetail({ params }: Params) {
           </p>
         </div>
         <div>
-          {work.available ? (
-            <>
-              <p className={styles.price}>{formatPrice(work.priceCents)}</p>
-              <Link href={`/works/${work.slug}/inquire`} className={styles.inquire}>
-                Inquire →
-              </Link>
-            </>
-          ) : (
-            <p className={`${styles.price} ${styles.sold}`}>Sold</p>
-          )}
+          <WorkAvailability slug={work.slug} priceCents={work.priceCents} available={work.available} />
         </div>
       </div>
     </article>

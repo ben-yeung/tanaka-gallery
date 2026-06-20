@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Work } from "@/data/types";
 import { getArtist } from "@/data/artists";
+import { getSandboxSold } from "@/lib/sandboxSold";
 import {
   parseGalleryParams,
   serializeGalleryParams,
@@ -19,7 +20,14 @@ export function GalleryView({ works }: { works: Work[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const state = parseGalleryParams(useSearchParams());
-  const sorted = sortWorks(works, state, artistNameOf);
+
+  const [soldSlugs, setSoldSlugs] = useState<string[]>([]);
+  useEffect(() => { setSoldSlugs(getSandboxSold()); }, []);
+
+  const merged = soldSlugs.length > 0
+    ? works.map((w) => soldSlugs.includes(w.slug) ? { ...w, available: false } : w)
+    : works;
+  const sorted = sortWorks(merged, state, artistNameOf);
 
   const onChange = useCallback(
     (next: SortState) => {

@@ -32,7 +32,7 @@ export function TestCardNote() {
           marginBottom: 2,
         }}
       >
-        Test mode
+        Sandbox mode
       </p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "max(5px, 0.5vw)" }}>

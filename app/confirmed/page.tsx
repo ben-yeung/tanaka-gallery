@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getWork } from "@/data/works";
 import { getArtist } from "@/data/artists";
 import { formatPrice } from "@/data/format";
+import { SandboxSoldWriter } from "@/components/checkout/SandboxSoldWriter";
 import styles from "./confirmed.module.css";
 
 export const metadata: Metadata = { title: "Confirmed" };
@@ -18,30 +19,29 @@ export default async function Confirmed({ searchParams }: Search) {
   return (
     <section className={styles.wrap}>
       <h1 className={styles.heading}>{ok ? "Thank you." : "Order incomplete."}</h1>
+      {ok && work && <SandboxSoldWriter slug={work.slug} />}
+      {ok && <p className={`meta ${styles.subheader}`}>Your order has been received. A confirmation will be sent to your email shortly.</p>}
+      {ok && <p className={`meta ${styles.note}`}>Sandbox order — no real payment was taken and nothing ships.</p>}
 
       {ok && work ? (
-        <>
-          <div className={styles.receipt}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={work.image} alt={work.title} className={styles.thumb} />
-            <div className={styles.receiptInfo}>
-              <p className={styles.workTitle}>{work.title}</p>
-              <p className={`meta ${styles.workMeta}`}>
-                {artist?.name ?? "Unknown"} · {work.year}
-              </p>
-              <p className={`meta ${styles.workMeta}`}>{work.medium}</p>
-              <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
-            </div>
+        <div className={styles.receipt}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={work.image} alt={work.title} className={styles.thumb} />
+          <div className={styles.receiptInfo}>
+            <p className={styles.workTitle}>{work.title}</p>
+            <p className={`meta ${styles.workMeta}`}>
+              <span className={styles.artistName}>{artist?.name ?? "Unknown"}</span>
+              {` · ${work.year}`}
+            </p>
+            <p className={`meta ${styles.workMeta}`}>{work.medium}</p>
+            <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
           </div>
-          <p className={`meta ${styles.note}`}>
-            Test-mode order — no real payment was taken and nothing ships.
-          </p>
-        </>
+        </div>
       ) : (
         <p className={`meta ${styles.note}`}>No payment was completed.</p>
       )}
 
-      <Link href="/works" className={`subhead ${styles.back}`} style={{ borderBottom: "1px solid currentColor", display: "inline-block" }}>
+      <Link href="/works" className={`subhead ${styles.back}`} style={{ borderBottom: "1px solid currentColor" }}>
         ← Back to works
       </Link>
     </section>
