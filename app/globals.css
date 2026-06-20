@@ -7,6 +7,8 @@
 
   --measure: 68ch;
   --gutter: max(20px, 3.33vw);
+  /* nav padding * 2 + font-size + border */
+  --nav-height: calc(max(24px, 1.25vw) * 2 + max(12px, 0.74vw) + 2px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +17,7 @@
     --ink: #e8e6e0;
     --matcha: #8c9b7a;
     --matcha-rgb: 140 155 122;
-    --stone: #5a5e60;
+    --stone: #858c8f;
   }
 }
 
@@ -53,6 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  overflow-x: clip;
   /* Column layout pins the footer to the viewport bottom and lets <main> grow to
      absorb any leftover height (no dead space below the footer on short pages). */
   display: flex;
