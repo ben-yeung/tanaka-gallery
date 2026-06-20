@@ -39,16 +39,14 @@ export default async function Inquire({ params }: Params) {
           <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
         </div>
 
-        {/* Right: payment form */}
-        <div>
+        {/* Right: payment — note floats absolutely outside this column on wide viewports */}
+        <div className={styles.paymentCol}>
           <p className={`meta ${styles.sectionLabel}`}>Payment</p>
           <hr className={styles.rule} />
           <CheckoutPanel slug={work.slug} />
-        </div>
-
-        {/* Floating aside: test card note (third column on wide screens) */}
-        <div className={styles.floatingNote}>
-          <TestCardNote />
+          <div className={styles.floatingNote}>
+            <TestCardNote />
+          </div>
         </div>
       </div>
     </section>
