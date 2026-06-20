@@ -11,12 +11,27 @@ export function TestCardNote() {
   }
 
   return (
-    <p className="meta" style={{ color: "var(--stone)", marginTop: 28 }}>
-      Test mode. Use card{" "}
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      <p
+        className="meta"
+        style={{
+          color: "var(--stone)",
+          letterSpacing: "0.07em",
+          textTransform: "uppercase",
+          fontSize: "max(9px, 0.6vw)",
+          marginBottom: 6,
+        }}
+      >
+        Test mode
+      </p>
+
+      <p className="meta" style={{ color: "var(--stone)" }}>Card number</p>
       <button
         onClick={copy}
         className="meta"
         style={{
+          display: "block",
+          textAlign: "left",
           color: "var(--stone)",
           background: "none",
           border: "none",
@@ -26,12 +41,24 @@ export function TestCardNote() {
           textUnderlineOffset: 3,
           fontFamily: "inherit",
           fontSize: "inherit",
+          letterSpacing: "0.06em",
         }}
       >
         4242 4242 4242 4242
       </button>
-      {copied ? " · Copied!" : " · tap to copy"}
-      , any future expiry, any CVC. No real payment is taken.
-    </p>
+      <p className="meta" style={{ color: "var(--stone)", opacity: 0.7, fontSize: "0.85em" }}>
+        {copied ? "Copied!" : "tap to copy"}
+      </p>
+
+      <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>Expiry</p>
+      <p className="meta" style={{ color: "var(--stone)" }}>Any future date</p>
+
+      <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>CVC</p>
+      <p className="meta" style={{ color: "var(--stone)" }}>Any 3 digits</p>
+
+      <p className="meta" style={{ color: "var(--stone)", marginTop: 12, opacity: 0.6 }}>
+        No real payment taken.
+      </p>
+    </div>
   );
 }
