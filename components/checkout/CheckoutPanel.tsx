@@ -39,7 +39,7 @@ function Form({ slug }: { slug: string }) {
       <PaymentElement />
       {error && <p className="meta" role="alert" style={{ marginTop: 12 }}>{error}</p>}
       <button type="submit" disabled={!stripe || busy} className="subhead" style={{ marginTop: 20, cursor: "pointer", background: "none", border: "1px solid var(--ink)", padding: "10px 18px", color: "inherit" }}>
-        {busy ? "Processing…" : "Pay (test mode)"}
+        {busy ? "Processing…" : "Complete purchase"}
       </button>
     </form>
   );

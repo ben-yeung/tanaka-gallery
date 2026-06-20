@@ -24,6 +24,7 @@ export default async function Inquire({ params }: Params) {
   return (
     <section className={styles.wrap}>
       <div className={styles.grid}>
+        {/* Left: order summary */}
         <div>
           <p className={`meta ${styles.sectionLabel}`}>Order summary</p>
           <hr className={styles.rule} />
@@ -31,16 +32,22 @@ export default async function Inquire({ params }: Params) {
           <img src={work.image} alt={work.title} className={styles.thumb} />
           <h1 className={styles.workTitle}>{work.title}</h1>
           <p className={`meta ${styles.workMeta}`}>
-            {artist?.name ?? "Unknown"} · {work.year} · {work.medium}
+            <span className={styles.artistName}>{artist?.name ?? "Unknown"}</span>
+            {` · ${work.year} · ${work.medium}`}
           </p>
           <p className={`meta ${styles.workMeta}`}>{work.dimensions}</p>
           <p className={styles.workPrice}>{formatPrice(work.priceCents)}</p>
         </div>
 
+        {/* Right: payment form */}
         <div>
           <p className={`meta ${styles.sectionLabel}`}>Payment</p>
           <hr className={styles.rule} />
           <CheckoutPanel slug={work.slug} />
+        </div>
+
+        {/* Floating aside: test card note (third column on wide screens) */}
+        <div className={styles.floatingNote}>
           <TestCardNote />
         </div>
       </div>
