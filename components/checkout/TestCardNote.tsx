@@ -50,7 +50,6 @@ export function TestCardNote() {
               textDecoration: "underline",
               textUnderlineOffset: 3,
               fontFamily: "inherit",
-              fontSize: "inherit",
               letterSpacing: "0.04em",
             }}
           >
