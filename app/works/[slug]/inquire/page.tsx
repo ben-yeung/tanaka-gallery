@@ -47,7 +47,7 @@ export default async function Inquire({ params }: Params) {
         <div>
           <p className={`meta ${styles.sectionLabel}`}>Payment</p>
           <hr className={styles.rule} />
-          <CheckoutPanel slug={work.slug} />
+          <CheckoutPanel slug={work.slug} priceCents={work.priceCents} />
         </div>
       </div>
     </section>

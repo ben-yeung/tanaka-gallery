@@ -10,10 +10,11 @@ import {
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { buildAppearance } from "./appearance";
+import { formatPrice } from "@/data/format";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "");
 
-function Form({ slug }: { slug: string }) {
+function Form({ slug, priceCents }: { slug: string; priceCents: number }) {
   const stripe = useStripe();
   const elements = useElements();
   const [busy, setBusy] = useState(false);
@@ -38,14 +39,17 @@ function Form({ slug }: { slug: string }) {
     <form onSubmit={onSubmit}>
       <PaymentElement />
       {error && <p className="meta" role="alert" style={{ marginTop: 12 }}>{error}</p>}
-      <button type="submit" disabled={!stripe || busy} className="subhead" style={{ marginTop: 20, cursor: "pointer", background: "none", border: "1px solid var(--ink)", padding: "10px 18px", color: "inherit" }}>
-        {busy ? "Processing…" : "Checkout"}
-      </button>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20 }}>
+        <button type="submit" disabled={!stripe || busy} className="subhead" style={{ cursor: "pointer", background: "none", border: "1px solid var(--ink)", padding: "10px 18px", color: "inherit" }}>
+          {busy ? "Processing…" : "Checkout"}
+        </button>
+        <p className="subhead" style={{ color: "var(--ink)" }}>{formatPrice(priceCents)}</p>
+      </div>
     </form>
   );
 }
 
-export function CheckoutPanel({ slug }: { slug: string }) {
+export function CheckoutPanel({ slug, priceCents }: { slug: string; priceCents: number }) {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -72,7 +76,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret, appearance: buildAppearance() }}>
-      <Form slug={slug} />
+      <Form slug={slug} priceCents={priceCents} />
     </Elements>
   );
 }
