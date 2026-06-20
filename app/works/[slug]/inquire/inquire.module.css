@@ -1,6 +1,6 @@
-/* Single-viewport layout: content fills remaining height after nav, vertically centered */
+/* Single-viewport layout: vertically centered in remaining height after nav */
 .wrap {
-  padding: max(20px, 2.5vh) var(--gutter);
+  padding: max(16px, 2vh) var(--gutter);
   min-height: calc(100svh - var(--nav-height));
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 28px;
   align-items: start;
 }
 
@@ -19,41 +19,35 @@
   font-size: max(9px, 0.62vw);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: max(10px, 1.2vh);
+  margin-bottom: max(10px, 1vh);
 }
-.rule { border: none; border-top: 1px solid var(--stone); opacity: 0.3; margin: 0 0 max(14px, 1.6vh); }
+.rule { border: none; border-top: 1px solid var(--stone); opacity: 0.3; margin: 0 0 max(12px, 1.4vh); }
 
-/* Image constrained by vh so the full page fits in the viewport */
 .thumb {
   width: 100%;
-  height: max(140px, 22vh);
+  height: max(120px, 20vh);
   object-fit: cover;
   display: block;
   background: var(--stone);
 }
 
-.workTitle { font-size: max(15px, 1.1vw); margin-top: max(12px, 1.4vh); }
-.workMeta { color: var(--stone); margin-top: max(4px, 0.5vh); }
+.workTitle { font-size: max(14px, 1vw); margin-top: max(10px, 1.2vh); }
+.workMeta { color: var(--stone); margin-top: max(3px, 0.4vh); font-size: max(11px, 0.7vw); }
 .artistName { color: var(--matcha); font-weight: 600; }
-.workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(13px, 0.85vw); margin-top: max(8px, 1vh); }
+.workPrice { font-family: var(--font-grotesk), sans-serif; font-size: max(13px, 0.82vw); margin-top: max(8px, 0.9vh); }
 
-/* payment column: anchor for the floating note */
 .paymentCol { position: relative; }
-
-/* default: note sits inline below the form */
-.floatingNote { margin-top: max(14px, 1.6vh); }
+.floatingNote { margin-top: max(12px, 1.4vh); }
 
 @media (min-width: 680px) {
-  .grid { grid-template-columns: 1fr 1fr; gap: max(40px, 4.5vw); }
+  .grid { grid-template-columns: 1fr 1fr; gap: max(36px, 4vw); }
 }
 
-/* float note to the right of payment column on wide viewports.
-   note width + gap creates the offset; symmetric gutter keeps the grid centered. */
 @media (min-width: 1200px) {
   .floatingNote {
     position: absolute;
     left: calc(100% + max(20px, 1.8vw));
-    top: calc(max(9px, 0.62vw) + max(10px, 1.2vh) + 1px + max(14px, 1.6vh)); /* below label + rule */
+    top: calc(max(9px, 0.62vw) + max(10px, 1vh) + 1px + max(12px, 1.4vh));
     width: max(180px, 13vw);
     margin-top: 0;
     border-left: 1px solid var(--stone);
@@ -63,5 +57,5 @@
 }
 
 @media (max-width: 679px) {
-  .thumb { height: max(140px, 28vw); }
+  .thumb { height: max(120px, 25vw); }
 }
