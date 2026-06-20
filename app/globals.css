@@ -7,6 +7,8 @@
 
   --measure: 68ch;
   --gutter: max(20px, 3.33vw);
+  /* nav padding * 2 + font-size + border */
+  --nav-height: calc(max(24px, 1.25vw) * 2 + max(12px, 0.74vw) + 2px);
 }
 
 @media (prefers-color-scheme: dark) {
