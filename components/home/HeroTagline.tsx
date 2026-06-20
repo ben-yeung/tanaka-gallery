@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 import { SplashItem } from "@/components/motion/splash/SplashItem";
 import { WabiSabiToggle } from "./WabiSabiToggle";
 import { beat, EASE_OUT } from "@/components/motion/splash/timing";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import styles from "@/app/home.module.css";
 
 export function HeroTagline() {
   const [show, setShow] = useState(false);
+  const isMobile = useIsMobile(768);
   const jpBeat = beat(1);
 
   return (
@@ -37,12 +39,12 @@ export function HeroTagline() {
       </SplashItem>
       {/*
         Outer motion.span drives the SF slide; inner SplashItem handles the splash entrance.
-        The two Framer instances animate independent properties (x vs opacity/filter) without
-        conflict. display:inline-block on .sf (Task 1) ensures translateX takes effect.
+        On mobile (≤768px) it becomes block so "San Francisco." sits on its own line, and
+        the slide-right is disabled since there's no inline context to shift into.
       */}
       <motion.span
-        style={{ display: "inline-block" }}
-        animate={{ x: show ? "0.18em" : 0 }}
+        style={{ display: isMobile ? "block" : "inline-block" }}
+        animate={{ x: isMobile ? 0 : show ? "0.18em" : 0 }}
         transition={
           show
             ? { duration: 0.48, ease: EASE_OUT, delay: 0.04 }

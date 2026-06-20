@@ -19,6 +19,8 @@
   font-size: 0.82em;
   margin: 0 0.06em 0 0.04em;
   color: var(--matcha);
+  /* Keep the kanji run on one line even when .tagline gets white-space:normal at mobile */
+  white-space: nowrap;
 }
 /* Period (。) gets its own knob — it reads oversized, and its full-width box leaves a
    big empty void on the right, so the negative margin pulls "San Francisco." back in. */
@@ -102,6 +104,10 @@
 .indexLink:hover {
   color: var(--matcha);
 }
+/* Desktop copy: visible at ≥769px, hidden at mobile. Mobile copy is the inverse. */
+.indexLinkMobile {
+  display: none;
+}
 .note {
   margin-bottom: 28px;
   width: 100%;
@@ -129,28 +135,46 @@
   margin-top: 10px;
 }
 
-/* Mobile: the single-line headline shrinks too far, so break "San Francisco." onto
-   its own line and scale the type up to reclaim the vertical space. */
-@media (max-width: 600px) {
+/* Tablet/mobile (≤768px): centre the hero, allow tagline wrapping, stack index grid.
+   The outer motion.span for "San Francisco." becomes display:block via JS (useIsMobile)
+   so it lands on its own line — white-space:normal is the CSS complement that lets
+   "Art. 侘び寂び。" also refllow naturally if ever needed. */
+@media (max-width: 768px) {
   .hero {
     text-align: center;
+    padding-top: clamp(56px, 14vh, 120px);
+    padding-bottom: clamp(56px, 14vh, 120px);
   }
   .tagline {
-    font-size: clamp(34px, 12vw, 56px);
-    line-height: 1.12;
-  }
-  .sf {
-    display: block;
+    white-space: normal;
   }
   .index {
     grid-template-columns: 1fr;
+    padding-top: 20px;
+    padding-bottom: 32px;
+    gap: clamp(20px, 4vw, 32px);
   }
-  .aboutLead {
-    width: 100%;
+  /* Link is no longer below the note on mobile, so the spacing margin it created is unused */
+  .note {
+    margin-bottom: 0;
   }
-  .aboutGrid {
-    grid-template-columns: 1fr;
-    gap: 22px;
+  /* At mobile the grid stacks: indexText → spotlight → link.
+     Hide the desktop-only copy; reveal the mobile sibling below the spotlight. */
+  .indexLinkDesktop {
+    display: none;
+  }
+  .indexLinkMobile {
+    display: block;
+  }
+}
+
+/* Narrow mobile (≤600px): scale the type down so "San Francisco." on its own line
+   doesn't overflow at 320–600px. The old 12vw/56px clamp was sized for the original
+   one-line layout; 8.5vw/44px fits a single "San Francisco." even at 320px. */
+@media (max-width: 600px) {
+  .tagline {
+    font-size: clamp(24px, 8.5vw, 44px);
+    line-height: 1.12;
   }
 }
 
@@ -193,4 +217,16 @@
   color: var(--ink);
   font-size: max(17px, 0.9vw);
   line-height: 1.6;
+}
+
+/* ≤1024px: collapse the about section to a single column (covers portrait tablets).
+   Must appear AFTER the base .aboutGrid rule so the lower specificity override wins. */
+@media (max-width: 1024px) {
+  .aboutLead {
+    width: 100%;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
 }

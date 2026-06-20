@@ -16,6 +16,10 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
+  /* Allow the wordmark to shrink below its max-content in narrow flex contexts */
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .wordmarkLogo {
   flex: none;
@@ -33,6 +37,7 @@
 .navLinks {
   display: flex;
   gap: max(28px, 1.5vw);
+  flex-shrink: 0;
 }
 .navLink {
   font-family: var(--font-grotesk), sans-serif;
@@ -93,6 +98,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  /* Prevent any long word (e.g. in the notice text) from forcing a wider box */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 /* Right column: meta line stacked above the social icon row, both right-aligned. */
 .footerRight {
@@ -144,4 +152,87 @@
   border: 0;
   border-top: 1px solid var(--stone);
   width: 100%;
+}
+
+/* Hamburger button — hidden at desktop, revealed at ≤768px */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  /* Keep the toggle snappy like the nav links */
+  transition: color 160ms ease;
+}
+.hamburger:hover {
+  color: var(--matcha);
+}
+.hamburgerLine {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+/* X state: top rotates down, middle fades, bottom rotates up */
+.hamburgerLineTopOpen {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburgerLineMidOpen {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburgerLineBotOpen {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile dropdown menu */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  padding: 4px var(--gutter) 16px;
+  border-bottom: 1px solid var(--stone);
+  background: var(--paper);
+}
+.mobileLink {
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: max(15px, 0.9vw);
+  letter-spacing: 0.06em;
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--stone) 40%, transparent);
+  transition: color 150ms ease;
+}
+.mobileLink:last-child {
+  border-bottom: 0;
+}
+.mobileLink:hover {
+  color: var(--matcha);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .navLinks {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  /* Footer: stack the two halves so they don't compete for narrow screen width */
+  .footer {
+    flex-direction: column;
+    gap: max(28px, 2vw);
+  }
+  .footerRight {
+    align-items: flex-start;
+  }
 }

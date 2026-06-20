@@ -45,7 +45,13 @@
   transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease;
 }
 
-html { font-family: var(--font-sans), system-ui, sans-serif; scroll-behavior: smooth; }
+html {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  scroll-behavior: smooth;
+  /* Prevent any element from creating a horizontal scrollbar. Applied to html (not
+     just body) so iOS Safari honours it — body-only overflow:hidden is ignored there. */
+  overflow-x: hidden;
+}
 
 body {
   background: var(--paper);
@@ -53,6 +59,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  overflow-x: hidden;
   /* Column layout pins the footer to the viewport bottom and lets <main> grow to
      absorb any leftover height (no dead space below the footer on short pages). */
   display: flex;
