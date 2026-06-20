@@ -32,7 +32,7 @@ export function TestCardNote() {
         style={{
           display: "block",
           textAlign: "left",
-          color: "var(--stone)",
+          color: "var(--ink)",
           background: "none",
           border: "none",
           padding: 0,
@@ -46,17 +46,17 @@ export function TestCardNote() {
       >
         4242 4242 4242 4242
       </button>
-      <p className="meta" style={{ color: "var(--stone)", opacity: 0.7, fontSize: "0.85em" }}>
+      <p className="meta" style={{ color: "var(--stone)", fontSize: "0.85em" }}>
         {copied ? "Copied!" : "tap to copy"}
       </p>
 
       <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>Expiry</p>
-      <p className="meta" style={{ color: "var(--stone)" }}>Any future date</p>
+      <p className="meta" style={{ color: "var(--ink)" }}>Any future date</p>
 
       <p className="meta" style={{ color: "var(--stone)", marginTop: 8 }}>CVC</p>
-      <p className="meta" style={{ color: "var(--stone)" }}>Any 3 digits</p>
+      <p className="meta" style={{ color: "var(--ink)" }}>Any 3 digits</p>
 
-      <p className="meta" style={{ color: "var(--stone)", marginTop: 12, opacity: 0.6 }}>
+      <p className="meta" style={{ color: "var(--stone)", marginTop: 12 }}>
         No real payment taken.
       </p>
     </div>
