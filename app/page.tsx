@@ -99,7 +99,7 @@ export default function Home() {
           <AboutRevealItem as="p" delay={ABOUT_COL_DELAY[2]} className={styles.aboutCol}>
             Tanaka&apos;s Gallery debuted in 2001 in a small San Francisco storefront
             that still smelled like the <Highlight index={2}>flower shop</Highlight> it
-            once was.
+            once was. The gallery carries on what the flowers once held.
           </AboutRevealItem>
         </div>
       </AboutReveal>
