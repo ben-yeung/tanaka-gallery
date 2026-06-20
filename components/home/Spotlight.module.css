@@ -3,13 +3,14 @@
 }
 /* Responsive grid: the column count (1–3) is set inline from JS based on how many
    cards fit the measured width. Keep `gap` in sync with GAP in Spotlight.tsx.
-   overflow:hidden clips the incoming/outgoing cards so the slide reads as one
-   continuous leftward movement (new card in from the right edge, oldest out the left). */
+   overflow-x:clip clips the incoming/outgoing cards horizontally so the slide reads as
+   one continuous leftward movement. clip (not hidden) avoids forcing overflow-y to auto,
+   so caption descenders (g, p, y, j in the serif font) aren't clipped at the bottom. */
 .grid {
   display: grid;
   gap: 16px;
   align-items: start;
-  overflow: hidden;
+  overflow-x: clip;
 }
 .card {
   min-width: 0;
