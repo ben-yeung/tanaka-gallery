@@ -11,14 +11,14 @@ export default function ArtistsPage() {
   return (
     <>
       <header className={styles.head}>
-        <SplashItem as="h1" delay={CONTENT_START}>Artists</SplashItem>
-        <SplashItem as="p" delay={beat(1)} className={styles.haikuLine}>From the kiln, from rain</SplashItem>
-        <SplashItem as="p" delay={beat(2)} className={styles.haikuLine}>Each mark made before it fades</SplashItem>
-        <SplashItem as="p" delay={beat(3)} className={styles.haikuLine}>Ten voices remain.</SplashItem>
+        <SplashItem as="h1" delay={CONTENT_START} replay>Artists</SplashItem>
+        <SplashItem as="p" delay={beat(1)} className={styles.haikuLine} replay>From the kiln, from rain</SplashItem>
+        <SplashItem as="p" delay={beat(2)} className={styles.haikuLine} replay>Each mark made before it fades</SplashItem>
+        <SplashItem as="p" delay={beat(3)} className={styles.haikuLine} replay>Ten voices remain.</SplashItem>
       </header>
       <section className={styles.index}>
         {allArtists().map((a, i) => (
-          <SplashItem key={a.slug} as="div" delay={rowDelay(i)}>
+          <SplashItem key={a.slug} as="div" delay={rowDelay(i)} replay>
             <Link href={`/artists/${a.slug}`} className={styles.row}>
               <span className={styles.nameGroup}>
                 <span className={styles.name}>{a.name}</span>

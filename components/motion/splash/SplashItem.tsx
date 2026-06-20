@@ -14,6 +14,10 @@ type SplashItemProps = {
   delay?: number;
   variant?: "item" | "inline" | "furigana";
   className?: string;
+  // When true, plays the entrance on every mount — not just the initial
+  // document load. Use on pages where you want the splash to replay on
+  // client-side navigation (e.g. the /artists index).
+  replay?: boolean;
 };
 
 export function SplashItem({
@@ -22,18 +26,19 @@ export function SplashItem({
   delay = 0,
   variant = "item",
   className,
+  replay = false,
 }: SplashItemProps) {
   const reduce = !!useReducedMotion();
   // Three-state: null = not yet mounted (SSR + initial hydration render),
   // false = mounted but no animation (client-side nav), true = animating.
   // Starts null so the server HTML and the initial client render both agree:
   // both ship opacity:0, so the browser never flashes visible content before
-  // JS hydrates. useLayoutEffect flips to true on a fresh load (animation
-  // plays) or false on a client nav (content becomes visible immediately,
-  // no replay). The null→false transition happens before paint.
+  // JS hydrates. useLayoutEffect flips to true on a fresh load or when
+  // replay=true (animation plays) or false otherwise (content visible immediately).
+  // The null→false transition happens before paint.
   const [play, setPlay] = useState<boolean | null>(null);
   useLayoutEffect(() => {
-    setPlay(isFreshLoad() ? true : false);
+    setPlay(replay || isFreshLoad() ? true : false);
   }, []);
   // Same element type on both the playing and at-rest paths (avoids hydration mismatch).
   const Comp = motion[as] as React.ElementType;
